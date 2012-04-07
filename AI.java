@@ -1,7 +1,10 @@
 
-public class AI {
-  public int GetInput(int[][] GameBoard){
-	  DumbAI dummy = new DumbAI();
-	  return dummy.ColumnFill(GameBoard);
+public class AI extends GeneralControlsImpl{
+  AI(int[][] GameBoardPass) {
+		super(GameBoardPass);
+	}
+
+public int GetInput(int[][] GameBoard){
+	  return 0;
   }
 }

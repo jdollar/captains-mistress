@@ -1,5 +1,8 @@
 public class  GameBoardImpl{
-  public static void main(String[] args){
+	private int[][] GameBoard = new int[6][7];
+ 
+	public int[][] GetGameBoard(){
+	  return GameBoard;
   }
 }
 

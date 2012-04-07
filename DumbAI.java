@@ -1,5 +1,8 @@
 
 public class DumbAI extends AI {
+	DumbAI(int[][] GameBoardPass){
+		super(GameBoardPass);
+	}
   public int ColumnFill(int[][] GameBoard){
 	  //searches 2D array from bottom left moving upwards and then next column
 	  //to the right for a empty spot on the board then selects that column
