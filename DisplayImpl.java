@@ -1,13 +1,13 @@
 public class  DisplayImpl implements Display{
   public static void main(String[] args){
   }
-  void ReDrawGameBoard(log[], gameboard[][]){
+  public void ReDrawGameBoard(int[] log, int[][] gameboard){
   }
-  void DrawMenu(gameboard[][]){
+  public void DrawMenu(int[][] gameboard){
   }
 }
 
 interface Display{
-  void ReDrawGameBoard(log[], gameboard[][]);
-  void DrawMenu(gameboard[][]);
+  public void ReDrawGameBoard(int[] log, int[][] gameboard);
+  public void DrawMenu(int[][] gameboard);
 }

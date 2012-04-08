@@ -4,7 +4,11 @@ public class AI extends GeneralControlsImpl{
 		super(GameBoardPass);
 	}
 
-public int GetInput(int[][] GameBoard){
+  public int GetInput(int[][] GameBoard){
 	  return 0;
   }
+
+  private void FPSControl(){
+		
+	}
 }
