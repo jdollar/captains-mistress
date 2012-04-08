@@ -11,3 +11,4 @@ interface Display{
   void ReDrawGameBoard(log[], gameboard[][]);
   void DrawMenu(gameboard[][]);
 }
+
