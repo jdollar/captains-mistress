@@ -1,4 +1,4 @@
-public class  GameBoardImpl{
+public class  GameBoardImpl implements GameBoard{
 	private int[][] GameBoard = new int[6][7];
  
 	public int[][] GetGameBoard(){
