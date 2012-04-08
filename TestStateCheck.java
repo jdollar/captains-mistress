@@ -2,14 +2,14 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TestStateCheck{
-  @Test public void testdrawmenu(){
+  @Test public void teststatecheck(){
     StateCheck statecheck = new StateCheckImpl();
+
+    assertTrue(statecheck.CheckVictory(gameboard[][]), true);
+    assertTrue(statecheck.CheckDraw(gameboard[][], true);
     
-    assertTrue(ReDrawGameBoard(log[], gameboard[][]), true);
-    assertTrue(display.DrawMenu(), true);
-    
-    assertNotNull(ReDrawGameBoard(log[], gameboard[][]));
-    assertNotNull(display.DrawMenu());
+    assertNotNull(statecheck.CheckVictory(gameboard[][]));
+    assertNotNull(statecheck.CheckDraw(gameboard[][]);
 
   }
 }

@@ -4,8 +4,11 @@ public class  GameBoardImpl implements GameBoard{
   public int[][] GetGameBoard(){
     return gameboard;
   }
+  void ChangeValue(){
+  }
 }
 
 interface GameBoard{
   public int[][] GetGameBoard();
+  void ChangeValue();
 }
