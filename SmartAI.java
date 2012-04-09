@@ -2,7 +2,7 @@
 public class SmartAI extends AI {
 	//constant that determines how many steps ahead algorithm will check
 	private final int STEPS = 4;
-//	private int[][] countBoard = new int[6][7];
+	private int[][] TestBoard = GameBoard;
 	private int checkToken = 0;
 	private int AIToken = 0;
 	private int opponentToken = 0;
@@ -33,9 +33,29 @@ public class SmartAI extends AI {
 		//checks for winning possibilities goes for those
 		//watches for player number getting to 3 or above
 		//after so many steps stop return parent with highest value for alpha and beta
-
+		
+		//to do: highest values. Transveral back with the correct values for alpha and beta determining highest. (or lowest)
+		int player = 0;
 		for(int runs = 0; runs <= STEPS; runs++){
 			
+			if(runs % 2 == 0)
+				player = 1;
+			else
+				player = 2;
+			
+			for(int columns = 0; columns < 6; columns++){
+				
+				if(CheckValid(columns)){
+					if(columns == 0){
+						TestBoard[columns][GetLowestGridValue(columns)] = player;
+						StateCheckTree.insert(TestBoard, player, columns);
+					}
+					else{
+						TestBoard[columns][GetLowestGridValue(columns)] = player;
+						StateCheckTree.insert(TestBoard, player, columns);
+					}
+				}
+			}
 		}
 		return 0;
 	}
@@ -43,7 +63,7 @@ public class SmartAI extends AI {
 	private void ScoreDetermine(int token){
 		int lowestGridValue = 0;
 		int beginABValue = 0;
-		
+
 		if(token == AIToken)
 			beginABValue = alpha;
 		else
@@ -222,15 +242,15 @@ public class SmartAI extends AI {
 class TreeClass{
 	TreeNode root = null;
 	TreeNode currentNode = null;
-	
+
 	boolean isEmpty(){
 		if(root == null){
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public TreeNode create(int[][] gameState, int player, int columnNumber){
 		TreeNode node = new TreeNode();
 		node.stateOfTest = gameState;
@@ -239,14 +259,15 @@ class TreeClass{
 		for(int x = 0; x < 7; x++){
 			node.child[x] = null;
 		}
-		
+
 		return node;
 	}
-	
-	public void insert(int[][] gameState, int player, int columnNumber){
+
+	public TreeNode insert(int[][] gameState, int player, int columnNumber){
 		root = insert(root, gameState, player, columnNumber);
+		return root;
 	}
-	
+
 	public TreeNode insert(TreeNode node, int[][] gameState, int player, int columnNumber){
 		if(node == null){
 			node = create(gameState, player, columnNumber);
@@ -254,7 +275,7 @@ class TreeClass{
 		else{
 			node.child[columnNumber] = insert(node.child[columnNumber], gameState, player, columnNumber);
 		}
-		
+
 		return node;
 	}
 }

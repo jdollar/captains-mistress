@@ -6,7 +6,7 @@ public abstract class  GeneralControlsImpl implements GeneralControls{
 		GameBoard = GameBoardPass;
 	}
 	
-	private boolean CheckValid(int columnNumber){
+	protected boolean CheckValid(int columnNumber){
 		if(GetLowestGridValue(columnNumber) == -1){
 			return false;
 		}
