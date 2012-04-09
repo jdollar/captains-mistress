@@ -10,7 +10,6 @@ public class TestDisplay{
     
     assertNotNull(display.ReDrawGameBoard(log[], gameboard[][]));
     assertNotNull(display.DrawMenu());
-    
->>>>>>> 482728c1d9f165adc0e321a1cbf51c93186c63cc
+
   }
 }
