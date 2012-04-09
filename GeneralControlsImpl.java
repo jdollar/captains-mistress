@@ -5,6 +5,25 @@ public abstract class  GeneralControlsImpl implements GeneralControls{
 	GeneralControlsImpl(int[][] GameBoardPass){
 		GameBoard = GameBoardPass;
 	}
+	
+	private boolean CheckValid(int columnNumber){
+		if(GetLowestGridValue(columnNumber) == -1){
+			return false;
+		}
+		else
+			return true;
+	}
+	protected int GetLowestGridValue(int columnNumber){
+		int lowestValue = 0;
+		for(int x = 5; x >= 0; x++){
+			if(GameBoard[columnNumber][x] == 0){
+				if(lowestValue > x){
+					lowestValue = x;
+				}
+			}
+		}
+		return lowestValue;
+	}
 }
 
 interface GeneralControls{

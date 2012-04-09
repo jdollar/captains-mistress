@@ -4,6 +4,11 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	public int[][] EmptyGameBoard() {
 		//creates an empty game board and sends it back
 		int[][] GameBoard = new int[6][7];
+		for(int x = 0; x < 6; x++){
+			for(int y = 0; y < 7; y++){
+				GameBoard[x][y] = 0;
+			}
+		}
 		return GameBoard;
 	}
 
@@ -82,5 +87,4 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		}
 		return GameBoard;
 	}
-
 }
