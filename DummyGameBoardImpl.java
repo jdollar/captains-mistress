@@ -1,6 +1,43 @@
 
 public class DummyGameBoardImpl implements DummyGameBoard{
-
+	private int[][] GameBoard;
+	
+	public DummyGameBoardImpl(DummyGameBoardImpl state){
+		GameBoard = state.getGameBoard();
+	}
+	
+	public int[][] getGameBoard(){
+		return GameBoard;
+	}
+	
+	public void setValue(int row, int column, int player){
+		GameBoard[row][column] = player;
+	}
+	
+	public boolean CheckValid(int columnNumber){
+		if(GetLowestGridValue(columnNumber) == -1){
+			return false;
+		}
+		else
+			return true;
+	}
+	
+	public int getValue(int row, int column){
+		return GameBoard[row][column];
+	}
+	
+	public int GetLowestGridValue(int columnNumber){
+		int lowestValue = 0;
+		for(int x = 5; x >= 0; x++){
+			if(GameBoard[columnNumber][x] == 0){
+				if(lowestValue > x){
+					lowestValue = x;
+				}
+			}
+		}
+		return lowestValue;
+	}
+	
 	public int[][] EmptyGameBoard() {
 		//creates an empty game board and sends it back
 		int[][] GameBoard = new int[6][7];

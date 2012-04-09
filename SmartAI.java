@@ -33,27 +33,22 @@ public class SmartAI extends AI {
 		//checks for winning possibilities goes for those
 		//watches for player number getting to 3 or above
 		//after so many steps stop return parent with highest value for alpha and beta
-		
+
 		//to do: highest values. Transveral back with the correct values for alpha and beta determining highest. (or lowest)
 		int player = 0;
+		
 		for(int runs = 0; runs <= STEPS; runs++){
-			
+			StateCheckTree.create(TestBoard[], player, columnNumber)
 			if(runs % 2 == 0)
 				player = 1;
 			else
 				player = 2;
-			
+
 			for(int columns = 0; columns < 6; columns++){
-				
+
 				if(CheckValid(columns)){
-					if(columns == 0){
-						TestBoard[columns][GetLowestGridValue(columns)] = player;
-						StateCheckTree.insert(TestBoard, player, columns);
-					}
-					else{
-						TestBoard[columns][GetLowestGridValue(columns)] = player;
-						StateCheckTree.insert(TestBoard, player, columns);
-					}
+					TestBoard[columns][GetLowestGridValue(columns)] = player;
+					StateCheckTree.insert(TestBoard, player, columns);
 				}
 			}
 		}
@@ -263,9 +258,13 @@ class TreeClass{
 		return node;
 	}
 
-	public TreeNode insert(int[][] gameState, int player, int columnNumber){
+	public void insert(int[][] gameState, int player, int columnNumber){
 		root = insert(root, gameState, player, columnNumber);
-		return root;
+		currentNode = root;
+	}
+	
+	public void insertChild(int[][] gameState, int player, int columnNumber){
+		currentNode = insert(root, gameState, player, columnNumber);
 	}
 
 	public TreeNode insert(TreeNode node, int[][] gameState, int player, int columnNumber){
