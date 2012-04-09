@@ -6,6 +6,10 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		GameBoard = state.getGameBoard();
 	}
 	
+	public DummyGameBoardImpl(){
+		GameBoard = new int[6][7];
+	}
+	
 	public int[][] getGameBoard(){
 		return GameBoard;
 	}

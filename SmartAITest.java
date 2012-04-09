@@ -5,7 +5,8 @@ public class SmartAITest extends AI{
 	}
 	
 	public int AStar(){
-		NTree StateCheckTree = new NTree();
+		NTree alphaTree = new NTree();
+		alphaTree.createTree();
 		return 0;
 	}
 	
@@ -14,6 +15,15 @@ public class SmartAITest extends AI{
 
 class NTree{
 	private int player = 0;
+	private Node root = null;
+	
+	public int createTree(){
+		NTree StateCheckTree = new NTree();
+		StateCheckTree.setRoot(buildTree(new DummyGameBoardImpl(), 0, -1));
+		
+		return 0;
+	}
+	
 	public Node buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
 		
@@ -36,12 +46,8 @@ class NTree{
 		return n;
 	}
 	
-	public void setRoot(){
-		
-	}
-	
-	public void setChildAt(int columns, Node n, int player, int moves){
-		
+	public void setRoot(Node n){
+		root = n;
 	}
 	private int changePlayer(int p){
 		switch(p){
