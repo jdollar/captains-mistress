@@ -6,7 +6,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 	}
 	
 	public int AStar(){
-		NTree alphaTree = new NTree(STEPS);
+		NTreeImpl alphaTree = new NTreeImpl(STEPS);
 		DummyGameBoardImpl board = new DummyGameBoardImpl();
 		return alphaTree.Transversal(alphaTree.buildTree(board, 0, -1));
 	}
@@ -187,20 +187,14 @@ class NTreeImpl implements NTree{
 class NodeImpl implements Node{
 	private int state;
 	private int player;
-	private int depth;
-	private Node parent = null;
 	private Node[] child;
 	
 	public NodeImpl(int alphaBetaValue, int validMoves, int playerNumber){
 		this.state = alphaBetaValue;
 		this.child = new Node[validMoves];
-		this.depth = parent.depth + 1;
 		this.player = playerNumber;
 	}
 	
-	public int getDepth(){
-		return depth;
-	}
 	public int numChildren(){
 		return child.length;
 	}
@@ -223,7 +217,6 @@ class NodeImpl implements Node{
 }
 
 interface Node{
-	public int getDepth();
 	public int numChildren();
 	public void setChildAt(int childPosition, Node currentNode);
 	public int getState();
