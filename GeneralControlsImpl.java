@@ -1,9 +1,9 @@
-public abstract class  GeneralControlsImpl implements GeneralControls{
-	protected int[][] GameBoard;
+public abstract class  GeneralControlsImpl{
+	protected DummyGameBoardImpl GameBoard;
 	
 	//constructor. Adds values from gameboard object to general control's copy
 	GeneralControlsImpl(DummyGameBoardImpl GameBoardPass){
-		GameBoard = GameBoardPass.getGameBoard();
+		GameBoard = GameBoardPass;
 	}
 	
 	protected boolean CheckValid(int columnNumber){
@@ -16,7 +16,7 @@ public abstract class  GeneralControlsImpl implements GeneralControls{
 	protected int GetLowestGridValue(int columnNumber){
 		int lowestValue = 0;
 		for(int x = 5; x >= 0; x++){
-			if(GameBoard[columnNumber][x] == 0){
+			if(GameBoard.getValue(x, columnNumber) == 0){
 				if(lowestValue > x){
 					lowestValue = x;
 				}
@@ -24,7 +24,4 @@ public abstract class  GeneralControlsImpl implements GeneralControls{
 		}
 		return lowestValue;
 	}
-}
-
-interface GeneralControls{
 }

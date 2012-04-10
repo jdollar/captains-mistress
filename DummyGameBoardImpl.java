@@ -1,4 +1,4 @@
-
+import java.io.*;
 public class DummyGameBoardImpl implements DummyGameBoard{
 	private int[][] GameBoard;
 	
@@ -8,6 +8,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public DummyGameBoardImpl(){
 		GameBoard = new int[6][7];
+		EmptyGameBoard();
 	}
 	
 	public int[][] getGameBoard(){
@@ -32,7 +33,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public int GetLowestGridValue(int columnNumber){
 		int lowestValue = 0;
-		for(int x = 5; x >= 0; x++){
+		for(int x = 5; x >= 0; x--){
 			if(GameBoard[columnNumber][x] == 0){
 				if(lowestValue > x){
 					lowestValue = x;
