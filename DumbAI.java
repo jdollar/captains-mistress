@@ -1,6 +1,6 @@
 
 public class DumbAI extends AI {
-	DumbAI(int[][] GameBoardPass){
+	DumbAI(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
   public int ColumnFill(int[][] GameBoard){

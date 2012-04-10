@@ -42,20 +42,17 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		return lowestValue;
 	}
 	
-	public int[][] EmptyGameBoard() {
+	public void EmptyGameBoard() {
 		//creates an empty game board and sends it back
-		int[][] GameBoard = new int[6][7];
 		for(int x = 0; x < 6; x++){
 			for(int y = 0; y < 7; y++){
 				GameBoard[x][y] = 0;
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] NColumnFilledGameBoard(int columnsToFill) {
+	public void NColumnFilledGameBoard(int columnsToFill) {
 		//fills up n columns based off parameters of alternative values
-		int[][] GameBoard = new int[6][7];
 		int count = 0;
 		
 		for(int x = 0; x < columnsToFill && x < 6; x++){
@@ -69,12 +66,10 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				}
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FullGameBoardAlternating() {
+	public void FullGameBoardAlternating() {
 		//fills board up with alternating values of 1 and 2
-		int[][] GameBoard = new int[6][7];
 		int count = 0;
 		
 		for(int x = 0; x < 6; x++){
@@ -88,12 +83,10 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				}
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FirstColumnHalfGameBoard() {
+	public void FirstColumnHalfGameBoard() {
 		//fills half the first column of the gameboard with alternating values
-		int[][] GameBoard = new int[6][7];
 		int count = 0;
 		
 		for(int x = 0; x < 3; x++){
@@ -104,28 +97,23 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				GameBoard[0][x] = 2;
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FullGameBoardOne() {
-		//fills the whole gameboard with ones
-		int[][] GameBoard = new int[6][7];
+	public void FullGameBoardOne() {
+		//fills the whole gameboard with ones 
 		for(int x = 0; x < 6; x++){
 			for(int y = 0; y < 7; y++){
 				GameBoard[x][y] = 1;
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FullGameBoardTwo() {
+	public void FullGameBoardTwo() {
 		//fills the whole gameboard with twos
-		int[][] GameBoard = new int[6][7];
 		for(int x = 0; x < 6; x++){
 			for(int y = 0; y < 7; y++){
 				GameBoard[x][y] = 2;
 			}
 		}
-		return GameBoard;
 	}
 }

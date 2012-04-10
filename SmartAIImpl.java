@@ -1,7 +1,8 @@
-
+import java.lang.Throwable;
+import java.io.*;
 public class SmartAIImpl extends AI implements SmartAI{
 	private final int STEPS = 4;
-	SmartAIImpl(int[][] GameBoardPass){
+	SmartAIImpl(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	
@@ -108,8 +109,8 @@ public class SmartAIImpl extends AI implements SmartAI{
 class NTreeImpl implements NTree{
 	private int playerTurnCount = 0;
 	private int stepTop = 0;
-	private int alpha = 0;
-	private int beta = 0;
+	private int alpha = -5;
+	private int beta = -6;
 	private SmartAIImpl tests;
 	
 	NTreeImpl(int numberOfSteps){
@@ -120,6 +121,9 @@ class NTreeImpl implements NTree{
 		int validMoves = 0;
 		
 		if(player != 0){
+			if(board.CheckValid(column)){
+				return new NodeImpl(-1, -1, -1);
+			}
 			board.setValue(board.GetLowestGridValue(column), column, player);
 			playerTurnCount++;
 		}
@@ -148,7 +152,9 @@ class NTreeImpl implements NTree{
 	public int Transversal(Node currentNode){
 		int checkValue = 0;
 		int player = currentNode.getPlayer();
-		int columnEnd = 0;
+		int columnEndAlpha = 0;
+		int columnEndBeta = 0;
+		int columnEnd = -1;
 		
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			if(currentNode.getChild(x) != null){
@@ -216,6 +222,11 @@ class NodeImpl implements Node{
 	}
 }
 
+class MyException extends Exception{
+	public MyException(String message){
+		super(message);
+	}
+}
 interface Node{
 	public int numChildren();
 	public void setChildAt(int childPosition, Node currentNode);
@@ -225,5 +236,6 @@ interface Node{
 }
 
 interface NTree{
-	
+	Node buildTree(DummyGameBoardImpl board, int player, int column);
+	public int Transversal(Node currentNode);
 }
