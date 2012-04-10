@@ -99,21 +99,18 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		}
 	}
 
-	public void FullGameBoardOne() {
+	public void FullGameBoardToken(int token) {
 		//fills the whole gameboard with ones 
 		for(int x = 0; x < 6; x++){
 			for(int y = 0; y < 7; y++){
-				GameBoard[x][y] = 1;
+				GameBoard[x][y] = token;
 			}
 		}
 	}
-
-	public void FullGameBoardTwo() {
-		//fills the whole gameboard with twos
-		for(int x = 0; x < 6; x++){
-			for(int y = 0; y < 7; y++){
-				GameBoard[x][y] = 2;
-			}
+	
+	public void ColumnNTokens(int place, int token, int column){
+		for(int y = 0; y < place; y++){
+			GameBoard[column][y] = token;
 		}
 	}
 }

@@ -1,5 +1,4 @@
-import java.lang.Throwable;
-import java.io.*;
+
 public class SmartAIImpl extends AI implements SmartAI{
 	private final int STEPS = 4;
 	SmartAIImpl(DummyGameBoardImpl GameBoardPass){
@@ -152,8 +151,6 @@ class NTreeImpl implements NTree{
 	public int Transversal(Node currentNode){
 		int checkValue = 0;
 		int player = currentNode.getPlayer();
-		int columnEndAlpha = 0;
-		int columnEndBeta = 0;
 		int columnEnd = -1;
 		
 		for(int x = 0; x < currentNode.numChildren(); x++){
@@ -222,11 +219,6 @@ class NodeImpl implements Node{
 	}
 }
 
-class MyException extends Exception{
-	public MyException(String message){
-		super(message);
-	}
-}
 interface Node{
 	public int numChildren();
 	public void setChildAt(int childPosition, Node currentNode);
