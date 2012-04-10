@@ -55,126 +55,52 @@ public class SmartAI extends AI {
 		return 0;
 	}
 
-	private void ScoreDetermine(int token){
+	private int ScoreDetermine(int token){
 		int lowestGridValue = 0;
-		int beginABValue = 0;
-
-		if(token == AIToken)
-			beginABValue = alpha;
-		else
-			beginABValue = beta;
+		int maxValue = 0;
 
 		for(int x = 0; x < 7; x++){
 			lowestGridValue = GetLowestGridValue(x);
-			TokenCount(x, lowestGridValue, x, lowestGridValue + 1);
-			TokenCount(x, lowestGridValue, x, lowestGridValue - 1);
-			if(beginABValue < tempScore){
-				beginABValue = tempScore;
+			if(lowestGridValue > 0){
+				TokenCount(x, lowestGridValue, x, lowestGridValue + 1);
+				TokenCount(x, lowestGridValue, x, lowestGridValue - 1);
 			}
-			tempScore = 0;
 
 			//horizontal
 			if(x > 0){
 				TokenCount(x, lowestGridValue, x - 1, lowestGridValue);
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
 			else{
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
-			tempScore = 0;
 
 			//left up down right diagonal
 			if(x > 0 && lowestGridValue > 0){ //both larger than 0
 				TokenCount(x, lowestGridValue, x - 1, lowestGridValue + 1);
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue - 1);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
 			else if(x > 0 && lowestGridValue == 0){  //x larger than 0 and on bottom row
 				TokenCount(x, lowestGridValue, x - 1, lowestGridValue + 1);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
 			else if(x == 0 && lowestGridValue > 0){  //x is on left side and 0 or more row
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue - 1);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
-			tempScore = 0;
 
 			//right up down left diagonal
 			if(x > 0 && lowestGridValue > 0){ //both larger than 0
 				TokenCount(x, lowestGridValue, x - 1, lowestGridValue - 1);
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue + 1);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
 			else if(x > 0 && lowestGridValue == 0){  //x larger than 0 and on bottom row
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue + 1);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
 			}
 			else if(x == 0 && lowestGridValue >= 0){  //x is on left side and 0 or more row
 				TokenCount(x, lowestGridValue, x + 1, lowestGridValue + 1);
-				if(beginABValue < tempScore){
-					beginABValue = tempScore;
-				}
-			}
-			tempScore = 0;
-
-			if(token == AIToken){
-				if(beginABValue > alpha){
-					alpha = beginABValue;
-				}
-				ScoreDetermine(opponentToken);
-			}
-			else{
-				if(beginABValue > beta){
-					beta = beginABValue;
-				}
-			}
+			}	
 		}
-		//		for(int count = 0; count < 2; count++){
-		//			if(checkToken == 0){
-		//				checkToken = 1;
-		//			}
-		//			else{
-		//				checkToken = 2;
-		//			}
-		//			for(int x = 0; x < 6; x++){
-		//				for(int y = 0; y < 5; y++){
-		//					TokenCount(x, y, x, y + 1);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x, y - 1);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x + 1, y);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x - 1, y);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x + 1, y + 1);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x - 1, y - 1);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x + 1, y - 1);
-		//					tempScore = 0;
-		//					TokenCount(x, y, x - 1, y + 1);
-		//					tempScore = 0;
-		//				}
-		//			}
-		//		}
-		//		
-		//		checkToken = 0;
+		
+		return maxValue;
 	}
 
 	private void TokenCount(int xValue, int yValue, int x2Value, int y2Value){
