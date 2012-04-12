@@ -7,6 +7,7 @@ public class UserInput extends GeneralControlsImpl {
 	UserInput(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
+	
 	public int GetInput(){
 		System.out.println ("Please make a move");
 		Scanner in = new Scanner(System.in);

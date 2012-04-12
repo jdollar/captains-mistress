@@ -5,14 +5,13 @@ class NTreeImpl implements NTree{
 	private int alpha = -5;
 	private int beta = -6;
 	private SmartAIImpl tests;
-	
+
 	NTreeImpl(int numberOfSteps){
 		stepTop = numberOfSteps;
 	}
-	
+
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
-		tests = new SmartAIImpl(board);
 		
 		if(player != 0){
 			if(!board.CheckValid(column)){
@@ -22,15 +21,17 @@ class NTreeImpl implements NTree{
 			playerTurnCount++;
 		}
 		
+		tests = new SmartAIImpl(board);
+
 		for(int x = 0; x < 6; x++){
 			if(board.CheckValid(x)){
 				validMoves++;
 			}
 		}
-		
+
 		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player);
-		
-		if(playerTurnCount >= stepTop){
+
+		if(playerTurnCount <= stepTop){
 			int count = 0;
 			for(int i = 0; i < validMoves; i++){
 				if(board.getValue(board.GetLowestGridValue(i), i) == 0){
@@ -38,18 +39,18 @@ class NTreeImpl implements NTree{
 				}
 			}
 		}
-		
+
 		playerTurnCount--;
 		return n;
 	}
-	
+
 	public int transversal(Node currentNode){
 		int checkValue = 0;
 		int player = currentNode.getPlayer();
 		int columnEnd = -2;
-		
+
 		for(int x = 0; x < currentNode.numChildren(); x++){
-			System.out.println(currentNode.getPlayer());
+			//System.out.println(currentNode.getPlayer());
 			if(currentNode.getChild(x) != null){
 				checkValue = transversal(currentNode.getChild(x));
 				if(player == 1){
@@ -68,7 +69,7 @@ class NTreeImpl implements NTree{
 		}
 		return columnEnd;
 	}
-	
+
 	private int changePlayer(int p){
 		switch(p){
 		case 0:

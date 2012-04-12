@@ -13,15 +13,20 @@ public class SmartAIImpl extends AI implements SmartAI{
 	public int ScoreDetermine(int token){
 		int lowestGridValue = 0;
 		int maxValue = 0;
+		int temp = 0;
 
-		for(int x = 0; x < 7; x++){
-			lowestGridValue = GetLowestGridValue(x);
+		for(int x = 0; x < GameBoard.getNumColumns(); x++){
+			lowestGridValue = GetLowestGridValue(x) - 1;
 			//vertical
 			if(lowestGridValue > 0){
 				//maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token); //won't need
-				maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue - 1, token);
+				temp += TokenCount(x, lowestGridValue, x, lowestGridValue - 1, token);
 			}
-
+			
+			compare(maxValue, temp);
+			temp = 0;
+			
+			temp = 0;
 			//horizontal
 			if(x > 0){
 				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue, token);
@@ -33,8 +38,8 @@ public class SmartAIImpl extends AI implements SmartAI{
 
 			//left up down right diagonal
 			if(x > 0 && lowestGridValue > 0){ //both larger than 0
-				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue + 1, token);
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue - 1, token);
+				maxValue += TokenCount(x, lowestGridValue - 1, x - 1, lowestGridValue + 1, token);
+				maxValue += TokenCount(x, lowestGridValue - 1, x + 1, lowestGridValue - 1, token);
 			}
 			else if(x > 0 && lowestGridValue == 0){  //x larger than 0 and on bottom row
 				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue + 1, token);
@@ -59,10 +64,16 @@ public class SmartAIImpl extends AI implements SmartAI{
 		return maxValue;
 	}
 	
+	private int compare(int x, int y){
+		if(x < y){
+			x = y;
+		}
+		return x;
+	}
 	public int TokenCount(int xValue, int yValue, int x2Value, int y2Value, int player){
 		int tempScore = 0;
 		
-		if(x2Value >= GameBoard.getRowLength() && y2Value >= GameBoard.getColumnHeight()){
+		if(x2Value <= GameBoard.getNumRows() && y2Value <= GameBoard.getNumColumns() && x2Value >= 0 && y2Value >= 0){
 			if(GameBoard.getValue(xValue, yValue) == player){
 				if(yValue < y2Value && xValue  > x2Value){
 					tempScore++;

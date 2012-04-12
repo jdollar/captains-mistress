@@ -17,11 +17,11 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		return GameBoard;
 	}
 	
-	public int getRowLength(){
+	public int getNumRows(){
 		return ROW;
 	}
 	
-	public int getColumnHeight(){
+	public int getNumColumns(){
 		return COL;
 	}
 	
@@ -43,14 +43,23 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public int GetLowestGridValue(int columnNumber){
 		int lowestValue = 0;
-		for(int x = 5; x >= 0; x--){
-			if(GameBoard[columnNumber][x] == 0){
-				if(lowestValue > x){
+		for(int x = 0; x < ROW; x++){
+			if(GameBoard[x][columnNumber] == 0){
+				if(lowestValue < x){
 					lowestValue = x;
 				}
 			}
 		}
 		return lowestValue;
+	}
+	
+	public void displayBoard(){
+		for(int x = 0; x < ROW; x++){
+			for(int y = 0; y < COL; y++){
+				System.out.print(GameBoard[x][y]);
+			}
+			System.out.print("\n");
+		}
 	}
 	
 	public void EmptyGameBoard() {
@@ -68,12 +77,12 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		
 		for(int x = 0; x < columnsToFill && x < 6; x++){
 			count = x;
-			for(int y = 0; y < 7; y++){
+			for(int y = 0; y < ROW; y++){
 				if((count % 2) != 0){
-					GameBoard[x][y] = 1;
+					GameBoard[y][x] = 1;
 				}
 				else{
-					GameBoard[x][y] = 2;
+					GameBoard[y][x] = 2;
 				}
 			}
 		}
@@ -83,14 +92,14 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		//fills board up with alternating values of 1 and 2
 		int count = 0;
 		
-		for(int x = 0; x < 6; x++){
+		for(int x = 0; x < COL; x++){
 			count = x;
-			for(int y = 0; y < 7; y++){
+			for(int y = 0; y < ROW; y++){
 				if((count % 2) != 0){
-					GameBoard[x][y] = 1;
+					GameBoard[y][x] = 1;
 				}
 				else{
-					GameBoard[x][y] = 2;
+					GameBoard[y][x] = 2;
 				}
 			}
 		}
@@ -102,26 +111,26 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		
 		for(int x = 0; x < 3; x++){
 			if((count % 2) != 0){
-				GameBoard[0][x] = 1;
+				GameBoard[x][0] = 1;
 			}
 			else{
-				GameBoard[0][x] = 2;
+				GameBoard[x][0] = 2;
 			}
 		}
 	}
 
 	public void FullGameBoardToken(int token) {
 		//fills the whole gameboard with ones 
-		for(int x = 0; x < 6; x++){
-			for(int y = 0; y < 7; y++){
-				GameBoard[x][y] = token;
+		for(int x = 0; x < COL; x++){
+			for(int y = 0; y < ROW; y++){
+				GameBoard[y][x] = token;
 			}
 		}
 	}
 	
 	public void ColumnNTokens(int place, int token, int column){
 		for(int y = 0; y < place; y++){
-			GameBoard[column][y] = token;
+			GameBoard[GetLowestGridValue(column)][column] = token;
 		}
 	}
 }
