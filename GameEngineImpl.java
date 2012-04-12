@@ -1,7 +1,10 @@
 public class  GameEngineImpl implements GameEngine{
-  public static void main(String[] args){
-    void GameLoop(){
-    }
+  public void GameLoop(){
+  	StateCheckImpl loopChecks = new StateCheckImpl();
+  	DummyGameBoardImpl checkBoard = new DummyGameBoardImpl();
+  	while(!loopChecks.CheckVictory(checkBoard.getGameBoard())){
+  		
+  	}
   }
 }
 

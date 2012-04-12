@@ -1,17 +1,28 @@
-
+import java.io.*;
 public class DummyGameBoardImpl implements DummyGameBoard{
 	private int[][] GameBoard;
+	private int ROW = 6;
+	private int COL = 7;
 	
 	public DummyGameBoardImpl(DummyGameBoardImpl state){
 		GameBoard = state.getGameBoard();
 	}
 	
 	public DummyGameBoardImpl(){
-		GameBoard = new int[6][7];
+		GameBoard = new int[ROW][COL];
+		EmptyGameBoard();
 	}
 	
 	public int[][] getGameBoard(){
 		return GameBoard;
+	}
+	
+	public int getRowLength(){
+		return ROW;
+	}
+	
+	public int getColumnHeight(){
+		return COL;
 	}
 	
 	public void setValue(int row, int column, int player){
@@ -32,7 +43,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public int GetLowestGridValue(int columnNumber){
 		int lowestValue = 0;
-		for(int x = 5; x >= 0; x++){
+		for(int x = 5; x >= 0; x--){
 			if(GameBoard[columnNumber][x] == 0){
 				if(lowestValue > x){
 					lowestValue = x;
@@ -42,20 +53,17 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		return lowestValue;
 	}
 	
-	public int[][] EmptyGameBoard() {
+	public void EmptyGameBoard() {
 		//creates an empty game board and sends it back
-		int[][] GameBoard = new int[6][7];
 		for(int x = 0; x < 6; x++){
 			for(int y = 0; y < 7; y++){
 				GameBoard[x][y] = 0;
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] NColumnFilledGameBoard(int columnsToFill) {
+	public void NColumnFilledGameBoard(int columnsToFill) {
 		//fills up n columns based off parameters of alternative values
-		int[][] GameBoard = new int[6][7];
 		int count = 0;
 		
 		for(int x = 0; x < columnsToFill && x < 6; x++){
@@ -69,12 +77,10 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				}
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FullGameBoardAlternating() {
+	public void FullGameBoardAlternating() {
 		//fills board up with alternating values of 1 and 2
-		int[][] GameBoard = new int[6][7];
 		int count = 0;
 		
 		for(int x = 0; x < 6; x++){
@@ -88,12 +94,10 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				}
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FirstColumnHalfGameBoard() {
+	public void FirstColumnHalfGameBoard() {
 		//fills half the first column of the gameboard with alternating values
-		int[][] GameBoard = new int[6][7];
 		int count = 0;
 		
 		for(int x = 0; x < 3; x++){
@@ -104,28 +108,20 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				GameBoard[0][x] = 2;
 			}
 		}
-		return GameBoard;
 	}
 
-	public int[][] FullGameBoardOne() {
-		//fills the whole gameboard with ones
-		int[][] GameBoard = new int[6][7];
+	public void FullGameBoardToken(int token) {
+		//fills the whole gameboard with ones 
 		for(int x = 0; x < 6; x++){
 			for(int y = 0; y < 7; y++){
-				GameBoard[x][y] = 1;
+				GameBoard[x][y] = token;
 			}
 		}
-		return GameBoard;
 	}
-
-	public int[][] FullGameBoardTwo() {
-		//fills the whole gameboard with twos
-		int[][] GameBoard = new int[6][7];
-		for(int x = 0; x < 6; x++){
-			for(int y = 0; y < 7; y++){
-				GameBoard[x][y] = 2;
-			}
+	
+	public void ColumnNTokens(int place, int token, int column){
+		for(int y = 0; y < place; y++){
+			GameBoard[column][y] = token;
 		}
-		return GameBoard;
 	}
 }

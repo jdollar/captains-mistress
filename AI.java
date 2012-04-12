@@ -1,6 +1,6 @@
 
 public class AI extends GeneralControlsImpl{
-  AI(int[][] GameBoardPass) {
+  AI(DummyGameBoardImpl GameBoardPass) {
 		super(GameBoardPass);
 	}
 

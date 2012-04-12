@@ -1,9 +1,9 @@
 
 public interface DummyGameBoard {
-		public int[][] EmptyGameBoard();
-		public int[][] NColumnFilledGameBoard(int columnsToFill);
-		public int[][] FullGameBoardAlternating();
-		public int[][] FullGameBoardOne();
-		public int[][] FullGameBoardTwo();
-		public int[][] FirstColumnHalfGameBoard();
+		public void EmptyGameBoard();
+		public void NColumnFilledGameBoard(int columnsToFill);
+		public void FullGameBoardAlternating();
+		public void FullGameBoardToken(int token);
+		public void FirstColumnHalfGameBoard();
+		public void ColumnNTokens(int place, int token, int column);
 }

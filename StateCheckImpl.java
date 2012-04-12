@@ -1,13 +1,13 @@
 public class StateCheckImpl implements StateCheck{
-  public static void main(String[] args){
-    boolean CheckVictory(gameboard[][]){
+    public boolean CheckVictory(int[][] gameboard){
+    	return false;
     }
-    boolean CheckDraw(gameboard[][]){
+    public boolean CheckDraw(int[][] gameboard){
+    	return false;
     }
-  }
 }
 
 interface StateCheck{
-  boolean CheckVictory(gameboard[][])
-  boolean CheckDraw(gameboard[][]);
+  boolean CheckVictory(int[][] gameboard);
+  boolean CheckDraw(int[][] gameboard);
 }

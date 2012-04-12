@@ -1,14 +1,13 @@
 
 public class SmartAIImpl extends AI implements SmartAI{
 	private final int STEPS = 4;
-	SmartAIImpl(int[][] GameBoardPass){
+	SmartAIImpl(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	
 	public int AStar(){
 		NTreeImpl alphaTree = new NTreeImpl(STEPS);
-		DummyGameBoardImpl board = new DummyGameBoardImpl();
-		return alphaTree.Transversal(alphaTree.buildTree(board, 0, -1));
+		return alphaTree.transversal(alphaTree.buildTree(GameBoard, 0, -1));
 	}
 	
 	public int ScoreDetermine(int token){
@@ -17,8 +16,9 @@ public class SmartAIImpl extends AI implements SmartAI{
 
 		for(int x = 0; x < 7; x++){
 			lowestGridValue = GetLowestGridValue(x);
+			//vertical
 			if(lowestGridValue > 0){
-				maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token);
+				//maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token); //won't need
 				maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue - 1, token);
 			}
 
@@ -62,8 +62,8 @@ public class SmartAIImpl extends AI implements SmartAI{
 	public int TokenCount(int xValue, int yValue, int x2Value, int y2Value, int player){
 		int tempScore = 0;
 		
-		if(x2Value >= 0 && y2Value >= 0){
-			if(GameBoard[xValue][yValue] == player){
+		if(x2Value >= GameBoard.getRowLength() && y2Value >= GameBoard.getColumnHeight()){
+			if(GameBoard.getValue(xValue, yValue) == player){
 				if(yValue < y2Value && xValue  > x2Value){
 					tempScore++;
 					TokenCount(x2Value, y2Value, x2Value - 1, y2Value + 1, player); //left up diagonal
@@ -102,128 +102,5 @@ public class SmartAIImpl extends AI implements SmartAI{
 		return tempScore;
 	}
 	
-	
-}
-
-class NTreeImpl implements NTree{
-	private int playerTurnCount = 0;
-	private int stepTop = 0;
-	private int alpha = 0;
-	private int beta = 0;
-	private SmartAIImpl tests;
-	
-	NTreeImpl(int numberOfSteps){
-		stepTop = numberOfSteps;
-	}
-	
-	public Node buildTree(DummyGameBoardImpl board, int player, int column){
-		int validMoves = 0;
-		
-		if(player != 0){
-			board.setValue(board.GetLowestGridValue(column), column, player);
-			playerTurnCount++;
-		}
-		
-		for(int x = 0; x < 6; x++){
-			if(board.CheckValid(x)){
-				validMoves++;
-			}
-		}
-		
-		Node n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player);
-		
-		if(playerTurnCount >= stepTop){
-			int count = 0;
-			for(int i = 0; i < validMoves; i++){
-				if(board.getValue(board.GetLowestGridValue(i), i) == 0){
-					n.setChildAt(count++, buildTree(new DummyGameBoardImpl(board), changePlayer(player), i));
-				}
-			}
-		}
-		
-		playerTurnCount--;
-		return n;
-	}
-	
-	public int Transversal(Node currentNode){
-		int checkValue = 0;
-		int player = currentNode.getPlayer();
-		int columnEnd = 0;
-		
-		for(int x = 0; x < currentNode.numChildren(); x++){
-			if(currentNode.getChild(x) != null){
-				checkValue = Transversal(currentNode.getChild(x));
-				if(player == 1){
-					if(checkValue > alpha){
-						alpha = checkValue;
-						columnEnd = x;
-					}
-				}
-				else if(player == 2){
-					if(checkValue > beta){
-						beta = checkValue;
-						columnEnd = x;
-					}
-				}
-			}
-		}
-		return columnEnd;
-	}
-	
-	private int changePlayer(int p){
-		switch(p){
-		case 0:
-			return 1;
-		case 1:
-			return 2;
-		case 2:
-			return 1;
-		default:
-			return 0;
-		}
-	}
-}
-
-class NodeImpl implements Node{
-	private int state;
-	private int player;
-	private Node[] child;
-	
-	public NodeImpl(int alphaBetaValue, int validMoves, int playerNumber){
-		this.state = alphaBetaValue;
-		this.child = new Node[validMoves];
-		this.player = playerNumber;
-	}
-	
-	public int numChildren(){
-		return child.length;
-	}
-	
-	public void setChildAt(int i, Node n){
-		this.child[i] = n;
-	}
-	
-	public int getState(){
-		return this.state;
-	}
-	
-	public int getPlayer(){
-		return this.player;
-	}
-	
-	public Node getChild(int i){
-		return this.child[i];
-	}
-}
-
-interface Node{
-	public int numChildren();
-	public void setChildAt(int childPosition, Node currentNode);
-	public int getState();
-	public int getPlayer();
-	public Node getChild(int childPosition);
-}
-
-interface NTree{
 	
 }
