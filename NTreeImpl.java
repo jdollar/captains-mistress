@@ -16,7 +16,7 @@ class NTreeImpl implements NTree{
 		
 		if(player != 0){
 			if(!board.CheckValid(column)){
-				return new NodeImpl(-1, -1, -1);
+				return new NodeImpl(0, 0, -1);
 			}
 			board.setValue(board.GetLowestGridValue(column), column, player);
 			playerTurnCount++;
@@ -43,7 +43,7 @@ class NTreeImpl implements NTree{
 		return n;
 	}
 	
-	public int Transversal(Node currentNode){
+	public int transversal(Node currentNode){
 		int checkValue = 0;
 		int player = currentNode.getPlayer();
 		int columnEnd = -2;
@@ -51,7 +51,7 @@ class NTreeImpl implements NTree{
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			System.out.println(currentNode.getPlayer());
 			if(currentNode.getChild(x) != null){
-				checkValue = Transversal(currentNode.getChild(x));
+				checkValue = transversal(currentNode.getChild(x));
 				if(player == 1){
 					if(checkValue > alpha){
 						alpha = checkValue;

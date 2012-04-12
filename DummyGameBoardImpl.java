@@ -9,7 +9,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	}
 	
 	public DummyGameBoardImpl(){
-		GameBoard = new int[6][7];
+		GameBoard = new int[ROW][COL];
 		EmptyGameBoard();
 	}
 	

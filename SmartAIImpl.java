@@ -7,7 +7,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 	
 	public int AStar(){
 		NTreeImpl alphaTree = new NTreeImpl(STEPS);
-		return alphaTree.Transversal(alphaTree.buildTree(GameBoard, 0, -1));
+		return alphaTree.transversal(alphaTree.buildTree(GameBoard, 0, -1));
 	}
 	
 	public int ScoreDetermine(int token){
