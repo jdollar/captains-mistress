@@ -43,13 +43,19 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public int GetLowestGridValue(int columnNumber){
 		int lowestValue = 0;
-		for(int x = 0; x < ROW; x++){
-			if(GameBoard[x][columnNumber] == 0){
-				if(lowestValue < x){
-					lowestValue = x;
+		for(int x = ROW - 1; x >= 0; x--){
+			if((x - 1) >= 0){
+				if(GameBoard[x - 1][columnNumber] == 0){
+					continue;
+				}
+				else{
+					System.out.println("test: " + x);
+					return x;
 				}
 			}
+			
 		}
+		
 		return lowestValue;
 	}
 	

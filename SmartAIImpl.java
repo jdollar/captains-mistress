@@ -16,7 +16,8 @@ public class SmartAIImpl extends AI implements SmartAI{
 		int temp = 0;
 
 		for(int x = 0; x < GameBoard.getNumColumns(); x++){
-			lowestGridValue = GetLowestGridValue(x) - 1;
+			lowestGridValue = GameBoard.GetLowestGridValue(x) - 1;
+			System.out.println(lowestGridValue);
 			//vertical
 			if(lowestGridValue > 0){
 				//maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token); //won't need
@@ -25,8 +26,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 			
 			compare(maxValue, temp);
 			temp = 0;
-			
-			temp = 0;
+
 			//horizontal
 			if(x > 0){
 				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue, token);
@@ -72,7 +72,12 @@ public class SmartAIImpl extends AI implements SmartAI{
 	}
 	public int TokenCount(int xValue, int yValue, int x2Value, int y2Value, int player){
 		int tempScore = 0;
-		
+//		System.out.println("x2: " + x2Value);
+//		System.out.println("x: " + xValue);
+//		System.out.println("y2: " + y2Value);
+//		System.out.println("y" + yValue);
+//		System.out.println("COL:" + GameBoard.getNumColumns());
+//		System.out.println("ROW: " + GameBoard.getNumRows());
 		if(x2Value <= GameBoard.getNumRows() && y2Value <= GameBoard.getNumColumns() && x2Value >= 0 && y2Value >= 0){
 			if(GameBoard.getValue(xValue, yValue) == player){
 				if(yValue < y2Value && xValue  > x2Value){

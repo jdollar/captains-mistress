@@ -6,11 +6,12 @@ import org.junit.Test;
 
 public class SmartAIImplTest {
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
-	SmartAIImpl tester = new SmartAIImpl(testBoard);
+	SmartAIImpl tester;
 	
 	@Test
 	public void testAStar() {	
 		testBoard.EmptyGameBoard();
+		tester = new SmartAIImpl(testBoard);
 		assertEquals("Result", 0, tester.AStar());
 	}
 
@@ -19,6 +20,7 @@ public class SmartAIImplTest {
 		testBoard.EmptyGameBoard();
 		testBoard.ColumnNTokens(3, 1, 0);
 		testBoard.displayBoard();
+		tester = new SmartAIImpl(testBoard);
 		assertEquals("Result", 3, tester.ScoreDetermine(1));
 	}
 //	@Test
