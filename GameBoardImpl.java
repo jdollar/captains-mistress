@@ -7,8 +7,3 @@ public class  GameBoardImpl implements GameBoard{
   public void ChangeValue(){
   }
 }
-
-interface GameBoard{
-  public int[][] GetGameBoard();
-  void ChangeValue();
-}

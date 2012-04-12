@@ -8,6 +8,3 @@ public class  GameEngineImpl implements GameEngine{
   }
 }
 
-interface GameEngine{
-  void GameLoop();
-}

@@ -1,0 +1,3 @@
+interface GameEngine{
+  void GameLoop();
+}

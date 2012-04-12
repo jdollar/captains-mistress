@@ -6,8 +6,3 @@ public class StateCheckImpl implements StateCheck{
     	return false;
     }
 }
-
-interface StateCheck{
-  boolean CheckVictory(int[][] gameboard);
-  boolean CheckDraw(int[][] gameboard);
-}
