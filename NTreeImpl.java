@@ -46,9 +46,10 @@ class NTreeImpl implements NTree{
 	public int Transversal(Node currentNode){
 		int checkValue = 0;
 		int player = currentNode.getPlayer();
-		int columnEnd = -1;
+		int columnEnd = -2;
 		
 		for(int x = 0; x < currentNode.numChildren(); x++){
+			System.out.println(currentNode.getPlayer());
 			if(currentNode.getChild(x) != null){
 				checkValue = Transversal(currentNode.getChild(x));
 				if(player == 1){

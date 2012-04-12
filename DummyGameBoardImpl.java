@@ -1,6 +1,8 @@
 import java.io.*;
 public class DummyGameBoardImpl implements DummyGameBoard{
 	private int[][] GameBoard;
+	private int ROW = 6;
+	private int COL = 7;
 	
 	public DummyGameBoardImpl(DummyGameBoardImpl state){
 		GameBoard = state.getGameBoard();
@@ -13,6 +15,14 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public int[][] getGameBoard(){
 		return GameBoard;
+	}
+	
+	public int getRowLength(){
+		return ROW;
+	}
+	
+	public int getColumnHeight(){
+		return COL;
 	}
 	
 	public void setValue(int row, int column, int player){

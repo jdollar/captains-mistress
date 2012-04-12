@@ -15,7 +15,7 @@ public abstract class  GeneralControlsImpl{
 	}
 	protected int GetLowestGridValue(int columnNumber){
 		int lowestValue = 0;
-		for(int x = 5; x >= 0; x++){
+		for(int x = 5; x >= 0; x--){
 			if(GameBoard.getValue(x, columnNumber) == 0){
 				if(lowestValue > x){
 					lowestValue = x;

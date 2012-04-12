@@ -62,7 +62,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 	public int TokenCount(int xValue, int yValue, int x2Value, int y2Value, int player){
 		int tempScore = 0;
 		
-		if(x2Value >= 0 && y2Value >= 0){
+		if(x2Value >= GameBoard.getRowLength() && y2Value >= GameBoard.getColumnHeight()){
 			if(GameBoard.getValue(xValue, yValue) == player){
 				if(yValue < y2Value && xValue  > x2Value){
 					tempScore++;
