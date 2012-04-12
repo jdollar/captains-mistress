@@ -14,8 +14,3 @@ public class  DisplayImpl implements Display{
   	link.DrawMenu();
   }
 }
-
-interface Display{
-  public void ReDrawGameBoard(int[] log, int[][] gameboard);
-  public void DrawMenu();
-}
