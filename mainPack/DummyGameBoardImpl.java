@@ -27,6 +27,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	}
 	
 	public void setValue(int row, int column, int player){
+		System.out.print(row);
 		GameBoard[row][column] = player;
 	}
 	
@@ -43,18 +44,15 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	}
 	
 	public int getLowestGridValue(int columnNumber){
-		for(int x = ROW - 1; x >= 0; x--){
-			if((x - 1) >= 0){
-				System.out.println("x: " + this.getValue(x - 1, columnNumber));
-				if(this.getValue(x - 1, columnNumber) == 0){
-					return x;
+		for(int x = 0; x < ROW; x++){
+				System.out.println("x: " + this.getValue(x, columnNumber));
+				if(this.getValue(x, columnNumber) == 0){
+					return ROW - x;
 				}
 				else{
 					continue;
 				}
 			}
-			
-		}
 		
 		return 0;
 	}
