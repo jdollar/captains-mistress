@@ -80,7 +80,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 //		System.out.println("y" + yValue);
 //		System.out.println("COL:" + GameBoard.getNumColumns());
 //		System.out.println("ROW: " + GameBoard.getNumRows());
-		if(x2Value <= GameBoard.getNumRows() && y2Value <= GameBoard.getNumColumns() && x2Value >= 0 && y2Value >= 0){
+		if(x2Value < GameBoard.getNumRows() && y2Value < GameBoard.getNumColumns() && x2Value >= 0 && y2Value >= 0){
 			if(GameBoard.getValue(xValue, yValue) == player){
 				if(yValue < y2Value && xValue  > x2Value){
 					tempScore++;
