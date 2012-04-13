@@ -1,8 +1,12 @@
+package Mohammed;
+
+import mainPack.*;
+
 public abstract class  GeneralControlsImpl{
 	protected DummyGameBoardImpl GameBoard;
 	
 	//constructor. Adds values from gameboard object to general control's copy
-	GeneralControlsImpl(DummyGameBoardImpl GameBoardPass){
+	protected GeneralControlsImpl(DummyGameBoardImpl GameBoardPass){
 		GameBoard = GameBoardPass;
 	}
 	

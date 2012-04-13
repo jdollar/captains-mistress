@@ -1,3 +1,4 @@
+package Joel;
 
 public interface Node{
 	public int numChildren();

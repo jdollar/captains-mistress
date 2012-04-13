@@ -1,3 +1,4 @@
+package mainPack;
 import java.io.*;
 public class DummyGameBoardImpl implements DummyGameBoard{
 	private int[][] GameBoard;

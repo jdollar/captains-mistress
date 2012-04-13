@@ -1,3 +1,4 @@
+package mainPack;
 public class StateCheckImpl implements StateCheck{
     public boolean CheckVictory(int[][] gameboard){
     	return false;

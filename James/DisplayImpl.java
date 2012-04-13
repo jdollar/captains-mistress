@@ -1,4 +1,6 @@
+package James;
 import java.util.Scanner;
+import Zach.*;
 
 public class  DisplayImpl implements Display{
   public void ReDrawGameBoard(int[] log, int[][] gameboard){
@@ -7,7 +9,7 @@ public class  DisplayImpl implements Display{
     int userInput = 0;
     Scanner input = new Scanner (System.in);
 
-    while (userInput != 1 || 3){
+    while (userInput < 1 || userInput > 3){
       System.out.println("");
       System.out.println("Main Menu");
       System.out.println("");

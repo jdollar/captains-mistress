@@ -1,7 +1,10 @@
+package Joel;
+
+import mainPack.*;
 
 public class SmartAIImpl extends AI implements SmartAI{
 	private final int STEPS = 4;
-	SmartAIImpl(DummyGameBoardImpl GameBoardPass){
+	public SmartAIImpl(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	

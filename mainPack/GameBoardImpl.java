@@ -1,3 +1,4 @@
+package mainPack;
 public class  GameBoardImpl implements GameBoard{
   private int[][] gameboard = new int[6][7];
 

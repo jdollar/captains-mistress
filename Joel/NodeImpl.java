@@ -1,4 +1,5 @@
-class NodeImpl implements Node{
+package Joel;
+public class NodeImpl implements Node{
 	private int state;
 	private int player;
 	private Node[] child;

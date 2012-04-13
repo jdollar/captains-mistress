@@ -1,5 +1,9 @@
+package Test;
+
 import org.junit.*;
 import static org.junit.Assert.*;
+import mainPack.*;
+import Joel.*;
 
 public class DumbAITest {
 	DummyGameBoardImpl testBoardCase = new DummyGameBoardImpl();

@@ -1,3 +1,4 @@
+package mainPack;
 
 public interface DummyGameBoard {
 		public void EmptyGameBoard();

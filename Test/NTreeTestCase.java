@@ -1,7 +1,8 @@
-
+package Test;
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import Joel.*;
+import mainPack.*;
 
 
 public class NTreeTestCase{

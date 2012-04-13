@@ -1,3 +1,8 @@
+package Josh;
+
+import Mohammed.GeneralControlsImpl;
+import mainPack.*;
+
 import java.util.*;
 
 public class UserInput extends GeneralControlsImpl {

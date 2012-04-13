@@ -1,12 +1,17 @@
+package Joel;
+
 import java.io.*;
-class NTreeImpl implements NTree{
+
+import mainPack.DummyGameBoardImpl;
+
+public class NTreeImpl implements NTree{
 	private int playerTurnCount = 0;
 	private int stepTop = 0;
 	private int alpha = -5;
 	private int beta = -6;
 	private SmartAIImpl tests;
 
-	NTreeImpl(int numberOfSteps){
+	public NTreeImpl(int numberOfSteps){
 		stepTop = numberOfSteps;
 	}
 

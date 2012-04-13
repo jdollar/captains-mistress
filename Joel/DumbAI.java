@@ -1,6 +1,8 @@
+package Joel;
+import mainPack.*;
 
 public class DumbAI extends AI {
-	DumbAI(DummyGameBoardImpl GameBoardPass){
+	public DumbAI(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	

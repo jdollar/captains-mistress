@@ -1,3 +1,7 @@
+package Zach;
+
+import mainPack.*;
+
 public class  GameEngineImpl implements GameEngine{
   public void GameLoop(){
   	StateCheckImpl loopChecks = new StateCheckImpl();
