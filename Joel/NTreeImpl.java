@@ -19,17 +19,17 @@ public class NTreeImpl implements NTree{
 		int validMoves = 0;
 		
 		if(player != 0){
-			if(!board.CheckValid(column)){
+			if(!board.checkValid(column)){
 				return new NodeImpl(0, 0, -1);
 			}
-			board.setValue(board.GetLowestGridValue(column), column, player);
+			board.setValue(board.getLowestGridValue(column), column, player);
 			playerTurnCount++;
 		}
 		
 		tests = new SmartAIImpl(board);
 
 		for(int x = 0; x < 6; x++){
-			if(board.CheckValid(x)){
+			if(board.checkValid(x)){
 				validMoves++;
 			}
 		}
@@ -39,7 +39,7 @@ public class NTreeImpl implements NTree{
 		if(playerTurnCount <= stepTop){
 			int count = 0;
 			for(int i = 0; i < validMoves; i++){
-				if(board.getValue(board.GetLowestGridValue(i), i) == 0){
+				if(board.getValue(board.getLowestGridValue(i), i) == 0){
 					n.setChildAt(count++, buildTree(new DummyGameBoardImpl(board), changePlayer(player), i));
 				}
 			}

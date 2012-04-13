@@ -11,15 +11,17 @@ public class SmartAIImplTest {
 	
 	@Test
 	public void testAStar() {	
-		testBoard.EmptyGameBoard();
+		testBoard.emptyGameBoard();
 		tester = new SmartAIImpl(testBoard);
 		assertEquals("Result", 0, tester.AStar());
 	}
 
 	@Test
 	public void testScoreDetermine(){
-		testBoard.EmptyGameBoard();
-		testBoard.ColumnNTokens(3, 1, 0);
+		testBoard.emptyGameBoard();
+		testBoard.displayBoard();
+		System.out.println("\n");
+		testBoard.columnNTokens(3, 1, 0);
 		testBoard.displayBoard();
 		tester = new SmartAIImpl(testBoard);
 		assertEquals("Result", 3, tester.ScoreDetermine(1));

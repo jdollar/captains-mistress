@@ -19,8 +19,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 		int temp = 0;
 
 		for(int x = 0; x < GameBoard.getNumColumns(); x++){
-			lowestGridValue = GameBoard.GetLowestGridValue(x) - 1;
-			System.out.println(lowestGridValue);
+			lowestGridValue = GameBoard.getLowestGridValue(x);
 			//vertical
 			if(lowestGridValue > 0){
 				//maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token); //won't need

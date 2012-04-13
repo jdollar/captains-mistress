@@ -11,7 +11,7 @@ public class DumbAITest {
 
 	@Test
 	public void FirstMoveTest() {
-		testBoardCase.EmptyGameBoard();
+		testBoardCase.emptyGameBoard();
 		int testNumber = testAI.ColumnFill(testBoardCase);
 		assertTrue(testNumber >= 0 || testNumber <= 7);
 	}
@@ -38,8 +38,8 @@ public class DumbAITest {
 
 	@Test
 	public void FullBoardTest() {
-		testBoardCase.EmptyGameBoard();
-		testBoardCase.FullGameBoardAlternating();
+		testBoardCase.emptyGameBoard();
+		testBoardCase.fullGameBoardAlternating();
 
 		assertEquals("Result", -1, testAI.ColumnFill(testBoardCase));
 	}
