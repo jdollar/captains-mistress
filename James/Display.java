@@ -1,6 +1,6 @@
 package James;
 
 interface Display{
-  public void ReDrawGameBoard(int[] log, int[][] gameboard);
-  public void DrawMenu();
+  public void ReDrawGameBoard(int[][] gameboard);
+  public int DrawMenu();
 }
