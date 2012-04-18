@@ -17,7 +17,7 @@ public class UserInput extends GeneralControlsImpl {
 		System.out.println ("Please make a move");
 		Scanner in = new Scanner(System.in);
 		playerMove = in.nextInt();
-		if(GameBoard.checkValid(playerMove) == true)
+		if(gameBoard.checkValid(playerMove) == true)
 		{
 			if (playerMove >= 1 || playerMove <=  7)
 			{
@@ -29,7 +29,7 @@ public class UserInput extends GeneralControlsImpl {
 		{
 			System.out.println ("Not a valid move, please select a new move");
 			playerMove = in.nextInt();
-			if(GameBoard.checkValid(playerMove) == true)
+			if(gameBoard.checkValid(playerMove) == true)
 			{
 				if (playerMove >= 1 || playerMove <=  7)
 				{

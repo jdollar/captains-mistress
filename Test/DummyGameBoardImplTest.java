@@ -23,4 +23,22 @@ public class DummyGameBoardImplTest {
 		assertEquals("Result", testBoard.getNumRows() - 5, testBoard.getLowestGridValue(3));
 	}
 
+	@Test
+	public void getValue(){
+		testBoard.emptyGameBoard();
+		assertEquals("Result", 0, testBoard.getValue(0, 0));
+		assertEquals("Result", 0, testBoard.getValue(0, 1));
+		assertEquals("Result", 0, testBoard.getValue(1, 0));
+		
+		testBoard.fullGameBoardToken(1);
+		assertEquals("Result", 1, testBoard.getValue(0, 0));
+		assertEquals("Result", 1, testBoard.getValue(0, 1));
+		assertEquals("Result", 1, testBoard.getValue(1, 0));
+		
+		testBoard.emptyGameBoard();
+		testBoard.columnNTokens(3, 1, 0);
+		assertEquals("Result", 0, testBoard.getValue(0, 0));
+		assertEquals("Result", 1, testBoard.getValue(4, 0));
+		assertEquals("Result", 0, testBoard.getValue(0, 2));
+	}
 }
