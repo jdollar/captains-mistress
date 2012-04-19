@@ -1,15 +1,15 @@
 package Josh;
 
-import Mohammed.GeneralControlsImpl;
+import Mohammed.AbstractGeneralControls;
 import mainPack.*;
 
 import java.util.*;
 
-public class UserInput extends GeneralControlsImpl {
+public class UserInput extends AbstractGeneralControls{
 	private int playerMove;
 	private int moveCheck = 0;
 
-	UserInput(DummyGameBoardImpl GameBoardPass){
+	public UserInput(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	
@@ -40,5 +40,11 @@ public class UserInput extends GeneralControlsImpl {
 		in.close();
 
 		return playerMove;
+	}
+
+	@Override
+	public String[] getLog() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

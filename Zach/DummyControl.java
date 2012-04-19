@@ -1,4 +1,11 @@
-public class DummyControl extends GeneralControlsImpl
+package Zach;
+
+import Josh.UserInput;
+import Mohammed.AbstractGeneralControls;
+import Joel.DumbAI;
+import mainPack.*;
+
+public class DummyControl extends AbstractGeneralControls
 {
 	UserInput player = new UserInput(gameBoard);
 	DumbAI dummy = new DumbAI(gameBoard);
@@ -8,6 +15,12 @@ public class DummyControl extends GeneralControlsImpl
 	
 	public int getInput()
 	{
-		return player.getInput();
+		return player.GetInput();
+	}
+
+	@Override
+	public String[] getLog() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

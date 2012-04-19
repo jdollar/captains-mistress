@@ -6,7 +6,7 @@ import mainPack.DummyGameBoardImpl;
  * This class is going to be a unit tester for the GeneralCobtrolsimpl class.
  * @author Mohammed
  */
-public class GeneralControlsTester extends GeneralControlsImpl {
+public class GeneralControlsTester extends AbstractGeneralControls{
 
     public GeneralControlsTester(DummyGameBoardImpl gb) {
         super(gb);
