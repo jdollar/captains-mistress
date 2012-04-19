@@ -1,6 +1,6 @@
 package mainPack;
 public class  GameBoardImpl implements GameBoard{
-        private int[][] gameboard;
+    private int[][] gameboard;
 	private static int ROW = 6;
 	private static int COL = 7;
 
