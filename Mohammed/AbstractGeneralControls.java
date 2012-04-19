@@ -10,7 +10,7 @@ import mainPack.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GeneralControlsImpl implements GeneralControls {
+public abstract class AbstractGeneralControls implements GeneralControls {
 
     /**
      * History of the logOfMoves happening in the game
@@ -28,7 +28,7 @@ public abstract class GeneralControlsImpl implements GeneralControls {
      * Please note that we do not have parameterless constructor with a purpose.
      * @param dummyGameBoardImpl
      */
-    protected GeneralControlsImpl(DummyGameBoardImpl dummyGameBoardImpl) {
+    protected AbstractGeneralControls(DummyGameBoardImpl dummyGameBoardImpl) {
         gameBoard = dummyGameBoardImpl;
     }
 
