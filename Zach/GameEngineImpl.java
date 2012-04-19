@@ -12,7 +12,7 @@ public class  GameEngineImpl implements GameEngine{
 		DummyControl player = new DummyControl(checkBoard);
 		DisplayImpl numPlayers = new DisplayImpl();
 		GameboardImpl gameBoard = new GameBoardImpl();
-		
+		newboard = gameBoard.GetGameBoard();
 		choice = numPlayers.DrawMenu();
     
   		while (loopcondition){
