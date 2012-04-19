@@ -33,11 +33,9 @@ public class NTreeImpl implements NTree{
 
 		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player);
 
-
 		for(int i = 0; i < arrayIter; i++){
 			if(playerTurnCount <= stepCount){
 				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
-				
 			}
 		}
 
