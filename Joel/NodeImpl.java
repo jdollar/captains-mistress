@@ -21,7 +21,7 @@ public class NodeImpl implements Node{
 	public int getState(){
 		return this.state;
 	}
-	//test
+
 	public int getPlayer(){
 		return this.player;
 	}
