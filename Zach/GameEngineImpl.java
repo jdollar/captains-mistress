@@ -16,7 +16,7 @@ public class  GameEngineImpl implements GameEngine{
 	{
 	 while(!loopChecks.CheckVictory(checkBoard.getGameBoard())){
 		gameDisplay.ReDrawGameBoard(checkBoard); //Redraws game board
-		int input = player.getInput();           
+		int input = player.getInput();           //Gets user input
 		checkBoard.setValue(input, playerToken);
 		if (loopChecks.CheckVictory(checkBoard))
 		{
