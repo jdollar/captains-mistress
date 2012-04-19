@@ -12,14 +12,16 @@ public class NTreeTestCase{
 	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
+		
 		assertEquals("Result", 0, testTree.transversal(testNode));
 		//write some more tests to get the problem determined
 	}
-/*	@Test
+	
+	@Test
 	public void testBuildTreeEmpty() {
 		testBoard.emptyGameBoard();
-		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, 0, -1)));
-	}*/
+		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, -1)));
+	}
 
 /*	@Test
 	public void testBuildTreeFull(){

@@ -10,12 +10,9 @@ public class DumbAI extends AI {
 	  //searches 2D array from bottom left moving upwards and then next column
 	  //to the right for a empty spot on the board then selects that column
 	  //as next move
-	  int[][] testBoard = GameBoard.getGameBoard();
-	  for(int x = 6; x > 0; x--){
-		  for(int y =0; y < 7; y++){
-			  if(testBoard[x][y] != 1 && testBoard[x][y] != 2){
-				  return x;
-			  }
+	  for(int count = 0; count < GameBoard.getNumColumns(); count++){
+		  if(GameBoard.checkValid(count)){
+			  return count;
 		  }
 	  }
 	  //returns a -1 if board is full
