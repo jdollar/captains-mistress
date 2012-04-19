@@ -1,7 +1,7 @@
 package Mohammed;
 
 import mainPack.*;
-//test
+
 public abstract class GeneralControlsImpl implements GeneralControls {
 
     protected DummyGameBoardImpl gameBoard;
