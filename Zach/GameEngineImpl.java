@@ -27,10 +27,10 @@ public class  GameEngineImpl implements GameEngine{
 			{
 			}
 
-		while(!loopChecks.CheckVictory(gameBoard.getGameBoard())){
+	/*	while(!loopChecks.CheckVictory(gameBoard)){
 			numPlayers.ReDrawGameBoard(gameBoard.getGameBoard()); //Redraws game board
 			int input = player.getInput();           //Gets user input
-			gameBoard.setValue(input, playerToken);
+			gameBoard.setValue(gameBoard.getLowestGridValue(input), input, playerToken);
 			if (loopChecks.CheckVictory(gameBoard))
 				{
 				// Calls displays output for victory
@@ -41,7 +41,7 @@ public class  GameEngineImpl implements GameEngine{
 				// Calls displays output for draw
 				break;
 			}
-  		}	
+  		}*/	
 	    }
 
 
