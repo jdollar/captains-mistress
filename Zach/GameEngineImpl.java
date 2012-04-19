@@ -4,45 +4,49 @@ import mainPack.*;
 
 public class  GameEngineImpl implements GameEngine{
 	int playerToken;
-  public void GameLoop(){
-    boolean loopcondition = true;
-    int choice = 0;
-  	StateCheckImpl loopChecks = new StateCheckImpl();
-    DisplayImpl gameDisplay = new DisplayImpl();
-	DummyGameBoardImpl checkBoard = new DummyGameBoardImpl();
-	DummyControl player = new DummyControl(checkBoard);
-  	while (loopcondition){
-	if (choice == 1)
-	{
-	 while(!loopChecks.CheckVictory(checkBoard.getGameBoard())){
-		gameDisplay.ReDrawGameBoard(checkBoard); //Redraws game board
-		int input = player.getInput();           //Gets user input
-		checkBoard.setValue(input, playerToken);
-		if (loopChecks.CheckVictory(checkBoard))
-		{
-			// Calls displays output for victory
-			break;
-		}
-		else if (loopChecks.CheckDraw(checkBoard))
-		{
-			// Calls displays output for draw
-			break;
-		}
+	public void GameLoop(){
+		boolean loopcondition = true;
+		int choice = 0;
+  		StateCheckImpl loopChecks = new StateCheckImpl();
+		DummyGameBoardImpl checkBoard = new DummyGameBoardImpl();
+		DummyControl player = new DummyControl(checkBoard);
+		DisplayImpl numPlayers = new DisplayImpl();
+		GameboardImpl gameBoard = new GameBoardImpl();
 		
-  	}
-	}
-    else if (choice == 2){
-		// call display instructions
-	}
-	else if (choice == 4){
-		loopcondition =  false;
-		}
-	else {
-		System.out.println("Invaild choice.");
-	}
+		choice = numPlayers.DrawMenu();
+    
+  		while (loopcondition){
+
+
+			if (choice == 0) //User selects computer vs computer
+			{
+			}
+			else if (choice == 1) //User selects player vs computer
+			{
+			}
+			else //User selects player vs player
+			{
+			}
+
+		while(!loopChecks.CheckVictory(checkBoard.getGameBoard())){
+			numPlayers.ReDrawGameBoard(checkBoard); //Redraws game board
+			int input = player.getInput();           //Gets user input
+			checkBoard.setValue(input, playerToken);
+			if (loopChecks.CheckVictory(checkBoard))
+				{
+				// Calls displays output for victory
+				break;
+				}
+			else if (loopChecks.CheckDraw(checkBoard))
+			{
+				// Calls displays output for draw
+				break;
+			}
+  		}	
+	    }
+
+
 	}
 
-  }
-  
-}
+  } 
 
