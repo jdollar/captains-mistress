@@ -1,6 +1,7 @@
 package mainPack;
+
 public class StateCheckImpl implements StateCheck{
-    public boolean CheckVictory(int[][] gameboard){
+    public boolean CheckVictory(GameBoardImpl gameboard){
     	return false;
     }
     public boolean CheckDraw(int[][] gameboard){

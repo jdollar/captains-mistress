@@ -1,9 +1,9 @@
 package Joel;
 
 import mainPack.*;
-import Mohammed.GeneralControlsImpl;
+import Mohammed.AbstractGeneralControls;
 
-public class AI extends GeneralControlsImpl {
+public class AI extends AbstractGeneralControls{
 	AI(DummyGameBoardImpl GameBoardPass) {
 		super(GameBoardPass);
 	}
@@ -14,5 +14,11 @@ public class AI extends GeneralControlsImpl {
 
 	private void FPSControl() {
 
+	}
+
+	@Override
+	public String[] getLog() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

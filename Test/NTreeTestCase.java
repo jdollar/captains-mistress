@@ -6,21 +6,22 @@ import mainPack.*;
 
 
 public class NTreeTestCase{
-	NTreeImpl testTree = new NTreeImpl();
+	NTreeImpl testTree = new NTreeImpl(4);
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
 	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
-		
-		assertEquals("Result", 0, testTree.transversal(testNode));
+		assertEquals("Result", 2, testTree.transversal(testNode));
+		assertEquals("Result", 0, testTree.getColumnToMove());
 		//write some more tests to get the problem determined
 	}
 	
 	@Test
 	public void testBuildTreeEmpty() {
 		testBoard.emptyGameBoard();
-		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, -1)));
+		assertEquals("Result", 0, testTree.getColumnToMove());
+		assertEquals("Result", 2, testTree.transversal(testTree.buildTree(testBoard, -1, -1)));
 	}
 
 /*	@Test
