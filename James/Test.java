@@ -10,7 +10,7 @@ public class Test{
     //creates an empty game board and sends it back
     for(int x = 0; x < ROW; x++){
       for(int y = 0; y < COL; y++){
-        gameboard[x][y] = 0;
+        gameboard[x][y] = 2;
       }
     }
 

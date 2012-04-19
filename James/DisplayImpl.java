@@ -24,16 +24,17 @@ public class DisplayImpl implements Display{
       for (int y = 0; y < column; y++) {
         if (gameboard[x][y] == 0){
           System.out.print("_");
-          System.out.print("|");
         }
         else if (gameboard[x][y] == 1){
           System.out.print("X");
-          System.out.print("|");
         }
         else if (gameboard[x][y] == 2){
           System.out.print("O");
-          System.out.print("|");
         }
+        else {
+          System.out.print(" ");
+        }  
+        System.out.print("|");
       }
       System.out.println("");
     }
