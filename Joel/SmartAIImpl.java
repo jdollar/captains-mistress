@@ -24,55 +24,56 @@ public class SmartAIImpl extends AI implements SmartAI{
 		int temp = 0;
 
 		for(int x = 0; x < gameBoard.getNumColumns(); x++){
-			lowestGridValue = gameBoard.getLowestGridValue(x) + 1;
+			lowestGridValue = gameBoard.getLowestGridValue(x);
 			//vertical
-			if(lowestGridValue > 5){
+			if(lowestGridValue < 5){
 				//maxValue += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token); //won't need
-				temp += TokenCount(x, lowestGridValue, x, lowestGridValue + 1, token);
+				temp += downCheck(x, lowestGridValue + 1, token);
 			}
 			
-			maxValue = compare(maxValue, temp);
+			maxValue = compare(maxValue, temp++);
 			temp = 0;
 
 			//horizontal
 			if(x > 0){
-				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue, token);
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue, token);
+				temp += leftCheck(x - 1, lowestGridValue, token);
+				temp += rightCheck(x + 1, lowestGridValue, token);
 			}
 			else{
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue, token);
+				temp += rightCheck(x + 1, lowestGridValue, token);
 			}
 			
-			maxValue = compare(maxValue, temp);
+			maxValue = compare(maxValue, temp++);
 			temp = 0;
 			
-			//left up down right diagonal
-			if(x > 0 && lowestGridValue > 0){ //both larger than 0
-				maxValue += TokenCount(x, lowestGridValue - 1, x - 1, lowestGridValue + 1, token);
-				maxValue += TokenCount(x, lowestGridValue - 1, x + 1, lowestGridValue - 1, token);
+			//left down right up diagonal
+			if(x > 0 && lowestGridValue < 5 && lowestGridValue > 0){ //both larger than 0
+				temp += leftDownCheck(x - 1, lowestGridValue + 1, token);
+				temp += rightUpCheck(x + 1, lowestGridValue - 1, token);
 			}
 			else if(x > 0 && lowestGridValue == 0){  //x larger than 0 and on bottom row
-				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue + 1, token);
+				maxValue += leftDownCheck(x - 1, lowestGridValue + 1, token);
 			}
 			else if(x == 0 && lowestGridValue > 0){  //x is on left side and 0 or more row
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue - 1, token);
+				maxValue += rightUpCheck(x + 1, lowestGridValue - 1, token);
 			}
 			
-			maxValue = compare(maxValue, temp);
+			maxValue = compare(maxValue, temp++);
 			temp = 0;
-			//right up down left diagonal
-			if(x > 0 && lowestGridValue > 0){ //both larger than 0
-				maxValue += TokenCount(x, lowestGridValue, x - 1, lowestGridValue - 1, token);
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue + 1, token);
+			
+			//right down left up diagonal
+			if(x > 0 && lowestGridValue > 0 && lowestGridValue < 5){ //both larger than 0
+				maxValue += leftUpCheck(x - 1, lowestGridValue - 1, token);
+				maxValue += rightDownCheck(x + 1, lowestGridValue + 1, token);
 			}
-			else if(x > 0 && lowestGridValue == 0){  //x larger than 0 and on bottom row
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue + 1, token);
+			else if(x < gameBoard.getNumColumns() && lowestGridValue == 0){  //x larger than 0 and on bottom row
+				maxValue += rightUpCheck(x + 1, lowestGridValue + 1, token);
 			}
 			else if(x == 0 && lowestGridValue >= 0){  //x is on left side and 0 or more row
-				maxValue += TokenCount(x, lowestGridValue, x + 1, lowestGridValue + 1, token);
+				maxValue += rightDownCheck(x + 1, lowestGridValue + 1, token);
 			}	
 			
-			maxValue = compare(maxValue, temp);
+			maxValue = compare(maxValue, temp++);
 			temp = 0;
 		}
 		
@@ -85,106 +86,84 @@ public class SmartAIImpl extends AI implements SmartAI{
 		}
 		return x;
 	}
-	public int TokenCount(int xValue, int yValue, int x2Value, int y2Value, int player){
-		int tempScore = 0;
-		boolean multipleTokens = false;
-		Direction heading = Direction.NONE;
-
-		if(x2Value < gameBoard.getNumColumns() && x2Value >= 0 && y2Value < gameBoard.getNumRows() && y2Value >= 0
-				&& xValue < gameBoard.getNumColumns() && yValue < gameBoard.getNumRows()){
-			
-			if(gameBoard.getValue(y2Value, x2Value) == player){
-				System.out.println("False");
-				if(yValue < y2Value && xValue  > x2Value){
-					heading = Direction.LEFTUP;
-					tempScore += TokenCount(x2Value, y2Value, x2Value - 1, y2Value + 2, player); //left up diagonal
-				}
-				if(yValue > y2Value && xValue < x2Value){
-					heading = Direction.RIGHTDOWN;
-					tempScore += TokenCount(x2Value, y2Value, x2Value + 1, y2Value + 2, player); //right down diagonal
-				}
-				if(xValue < x2Value && yValue < y2Value){
-					heading = Direction.RIGHTUP;
-					tempScore += TokenCount(x2Value, y2Value, x2Value + 1, y2Value - 2, player);  //right up diagonal
-				}
-				if(xValue > x2Value && yValue > y2Value){
-					heading = Direction.LEFTDOWN;
-					tempScore += TokenCount(x2Value, y2Value, x2Value - 1, y2Value + 2, player);  //left down diagonal
-				}
-				if(xValue == x2Value && yValue > y2Value){
-					heading = Direction.UP;
-					tempScore += TokenCount(x2Value, y2Value, x2Value, y2Value - 1, player);  //up
-				}
-				if(xValue == x2Value && yValue < y2Value){
-					heading = Direction.DOWN;
-					tempScore += TokenCount(x2Value, y2Value, x2Value, y2Value + 1, player);  //down
-				}
-				if(xValue < x2Value && yValue == y2Value){
-					heading = Direction.RIGHT;
-					tempScore += TokenCount(x2Value, y2Value, x2Value + 1, y2Value, player); //right
-				}
-				if(xValue > x2Value && yValue == y2Value){
-					heading = Direction.LEFT;
-					tempScore += TokenCount(x2Value, y2Value, x2Value - 1, y2Value, player); //left
-				}
-				
-				//return tempScore + 1;
+	
+	private int downCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return downCheck(xValue, yValue + 1, player) + 1;
 			}
 		}
-		
-		/*if(y2Value < gameBoard.getNumRows() - 1 && y2Value >= 0 &&
-				x2Value < gameBoard.getNumColumns() && x2Value >= 0){
-			switch(heading){
-			case UP:
-				if(gameBoard.getValue(yValue - 1, xValue) == player){
-					multipleTokens = true;
-				}
-				break;
-			case DOWN:
-				if(gameBoard.getValue(yValue + 1, xValue) == player){
-					multipleTokens = true;
-				}
-				break; 
-			case LEFT:
-				if(gameBoard.getValue(yValue, xValue - 1) == player){
-					multipleTokens = true;
-				}
-				break;
-			case RIGHT:
-				if(gameBoard.getValue(yValue, xValue + 1) == player){
-					multipleTokens = true;
-				}
-				break;
-			case RIGHTUP:
-				if(gameBoard.getValue(yValue - 2, xValue + 1) == player){
-					multipleTokens = true;
-				}
-				break;
-			case RIGHTDOWN:
-				if(gameBoard.getValue(yValue + 2, x2Value - 1) == player){
-					multipleTokens = true;
-				}
-				break;
-			case LEFTUP:
-				if(gameBoard.getValue(yValue - 2, xValue - 1) == player){
-					multipleTokens = true;
-				}
-				break;
-			case LEFTDOWN:
-				if(gameBoard.getValue(yValue + 2, xValue - 1) == player){
-					multipleTokens = true;
-				}
-				break;
+	
+		return 0;
+	}
+	
+	private int upCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return upCheck(xValue, yValue - 1, player) + 1;
 			}
-			
-			System.out.println(multipleTokens);
-			if(multipleTokens){
-				return tempScore + 1;
-			}
-		}*/
-		if(gameBoard.getValue(yValue, xValue) == player){
-			return tempScore + 1;
 		}
-		return tempScore;
+	
+		return 0;
+	}
+	
+	private int leftCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return leftCheck(xValue - 1, yValue, player) + 1;
+			}
+		}
+	
+		return 0;
+	}
+	
+	private int rightCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return rightCheck(xValue + 1, yValue, player) + 1;
+			}
+		}
+	
+		return 0;
+	}
+	
+	private int rightUpCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return rightUpCheck(xValue + 1, yValue - 1, player) + 1;
+			}
+		}
+	
+		return 0;
+	}
+	
+	private int rightDownCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return rightDownCheck(xValue + 1, yValue + 1, player) + 1;
+			}
+		}
+	
+		return 0;
+	}
+	
+	private int leftUpCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return leftUpCheck(xValue - 1, yValue - 1, player) + 1;
+			}
+		}
+	
+		return 0;
+	}
+	
+	private int leftDownCheck(int xValue, int yValue, int player){
+		if(xValue < gameBoard.getNumColumns() && xValue >= 0 && yValue < gameBoard.getNumRows() && yValue >= 0){
+			if(gameBoard.getValue(yValue, xValue) == player){
+				return leftDownCheck(xValue - 1, yValue + 1, player) + 1;
+			}
+		}
+	
+		return 0;
 	}
 }
