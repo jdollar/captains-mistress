@@ -9,12 +9,12 @@ public class SmartAIImplTest {
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	SmartAIImpl tester;
 	
-//	@Test
-//	public void testAStar() {	
-//		testBoard.emptyGameBoard();
-//		tester = new SmartAIImpl(testBoard);
-//		assertEquals("Result", 0, tester.AStar());
-//	}
+	@Test
+	public void testAStar() {	
+		testBoard.emptyGameBoard();
+		tester = new SmartAIImpl(testBoard);
+		assertEquals("Result", 0, tester.AStar());
+	}
 
 //tests for checking functions. Commented out because of access Change of functions
 /*	@Test

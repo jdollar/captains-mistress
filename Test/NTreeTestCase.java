@@ -6,9 +6,15 @@ import mainPack.*;
 
 
 public class NTreeTestCase{
-	NTreeImpl testTree = new NTreeImpl(4);
+	NTreeImpl testTree = new NTreeImpl();
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
+	@Test
+	public void transveralTest(){
+		NodeImpl testNode = new NodeImpl(2, 3, 1);
+		assertEquals("Result", 0, testTree.transversal(testNode));
+		//write some more tests to get the problem determined
+	}
 	@Test
 	public void testBuildTreeEmpty() {
 		testBoard.emptyGameBoard();

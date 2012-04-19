@@ -1,6 +1,5 @@
 package Joel;
 
-import Mohammed.*;
 import mainPack.*;
 
 public class SmartAIImpl extends AI implements SmartAI{
@@ -14,7 +13,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 	}
 	
 	public int AStar(){
-		NTreeImpl alphaTree = new NTreeImpl(STEPS);
+		NTreeImpl alphaTree = new NTreeImpl();
 		return alphaTree.transversal(alphaTree.buildTree(gameBoard, 0, -1));
 	}
 	

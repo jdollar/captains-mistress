@@ -2,11 +2,11 @@ package Joel;
 public class NodeImpl implements Node{
 	private int state;
 	private int player;
-	private Node[] child;
+	private NodeImpl[] child;
 	
 	public NodeImpl(int alphaBetaValue, int validMoves, int playerNumber){
 		this.state = alphaBetaValue;
-		this.child = new Node[validMoves];
+		this.child = new NodeImpl[validMoves];
 		this.player = playerNumber;
 	}
 	
@@ -14,7 +14,7 @@ public class NodeImpl implements Node{
 		return child.length;
 	}
 	
-	public void setChildAt(int i, Node n){
+	public void setChildAt(int i, NodeImpl n){
 		this.child[i] = n;
 	}
 	
@@ -26,7 +26,12 @@ public class NodeImpl implements Node{
 		return this.player;
 	}
 	
-	public Node getChild(int i){
+	public NodeImpl getChild(int i){
 		return this.child[i];
+	}
+	
+	public void displayNode(){
+		System.out.println("state: " + state);
+		System.out.println("player: " + player);
 	}
 }
