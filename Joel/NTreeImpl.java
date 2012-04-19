@@ -8,12 +8,12 @@ public class NTreeImpl implements NTree{
 	private int alpha = -5;
 	private int beta = -6;
 	private int STEPS = 4;
+	private int playerTurnCount = 0;
 	private SmartAIImpl tests;
 
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
 		int stepTop = STEPS;
-		int playerTurnCount = 0;
 		if(player != 0){
 			if(!board.checkValid(column)){
 				return new NodeImpl(0, 0, -1);
@@ -53,13 +53,15 @@ public class NTreeImpl implements NTree{
 		int player = currentNode.getPlayer();
 		int columnEnd = -2;
 
-		for(int x = 0; x < currentNode.numChildren(); x++){
+		for(int x = 0; x <= currentNode.numChildren(); x++){
 			currentNode.displayNode();
-			//System.out.println(currentNode.getPlayer());
-			if(currentNode.getChild(x) != null){
+			if(currentNode.numChildren() > 0){
 				checkValue = transversal(currentNode.getChild(x));
 
 			}
+			else
+				checkValue = currentNode.getState();
+			
 			if(player == 1){
 				if(checkValue > alpha){
 					alpha = checkValue;
