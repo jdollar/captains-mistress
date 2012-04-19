@@ -40,16 +40,16 @@ public class DisplayImpl implements Display{
   }
   public int DrawMenu(){
     menuInput = 0;
-    menuPlayer = 3;
+    menuPlayer = 4;
     Scanner input = new Scanner (System.in);
 
     while (menuInput != 1 && menuInput != 3){
       System.out.println("");
       System.out.println("Main Menu");
       System.out.println("");
-      System.out.println("1)Play");
-      System.out.println("2)Instructions");
-      System.out.println("3)Quit Game");
+      System.out.println("1) Play");
+      System.out.println("2) Instructions");
+      System.out.println("3) Quit Game");
       System.out.println("");
 
       try {
@@ -61,13 +61,14 @@ public class DisplayImpl implements Display{
       }
 
       switch(menuInput){
-        case 1:  while (menuPlayer != 0 && menuPlayer != 1 && menuPlayer != 2){
+        case 1:  while (menuPlayer != 0 && menuPlayer != 1 && menuPlayer != 2 && menuPlayer != 3){
                    System.out.println("");
                    System.out.println("Number of Players");
                    System.out.println("");
-                   System.out.println("0)Computer vs. Computer");
-                   System.out.println("1)Player vs. Computer");
-                   System.out.println("2)Player vs. Player");
+                   System.out.println("0) Computer vs. Computer");
+                   System.out.println("1) Player vs. Computer");
+                   System.out.println("2) Player vs. Player");
+                   System.out.println("3) Back");
                    System.out.println("");
   
                    try {
@@ -78,9 +79,18 @@ public class DisplayImpl implements Display{
                      System.out.println(input.next() + " is invalid data!");
                    }
                  }
+                 if (menuPlayer == 3){
+                     menuInput = 0;
+                     menuPlayer = 4;
+                   }
                  break;
         case 2:  System.out.println("");
-                 System.out.println("The goal is to get four of your tokens in a row either horizontally, vertically, or diagonally.");
+                 System.out.println("The goal is to get four of your tokens in a row either " +
+                   "horizontally, vertically, or diagonally.");
+                 System.out.println("");
+                 System.out.println("The game is played with two players." +
+                   " Each turn, a player selects the column they wish to place their token in."  +
+                   "Play continues until there is either a win, lose, or tie.");
                  break;
         case 3:  System.exit(0);
                  break;

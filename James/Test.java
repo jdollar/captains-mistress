@@ -16,8 +16,8 @@ public class Test{
 
     DisplayImpl display = new DisplayImpl();
 
-    players = display.DrawMenu();
-    System.out.println(players);
-    //display.ReDrawGameBoard(gameboard);
+    //players = display.DrawMenu();
+    //System.out.println(players);
+    display.ReDrawGameBoard(gameboard);
   }
 }
