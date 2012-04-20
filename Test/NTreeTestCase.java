@@ -9,7 +9,7 @@ public class NTreeTestCase{
 	NTreeImpl testTree = new NTreeImpl(1);
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
-	@Test
+	/*@Test
 	public void BuildTreeTest(){
 		NodeImpl resultNode = new NodeImpl(1, 7, 1);
 		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).getState());
@@ -46,10 +46,10 @@ public class NTreeTestCase{
 		testTree = new NTreeImpl(3);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
 				getChild(0).getChild(0).numChildren());
-	}
+	}*/
 	@Test
 	public void transveralTest(){
-		NodeImpl testNode = new NodeImpl(2, 0, 1);
+		NodeImpl testNode = new NodeImpl(2, 0, 1, 0);
 		testTree.transversal(testNode);
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//write some more tests to get the problem determined
@@ -73,15 +73,15 @@ public class NTreeTestCase{
 	}*/
 
 
-/*	@Test
+	@Test
 	public void DefendTest(){
 		testBoard.emptyGameBoard();
-		testBoard.columnNTokens(3, 2, 0);
-
-		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, 0, -1)));
+		testBoard.columnNTokens(3, 1, 2);
+		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
+		assertEquals("Result", 2, testTree.getColumnToMove());
 	}
 
-	@Test
+	/*@Test
 	public void DefendVsWinOpponentFirstColumnTest(){
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(3, 1, 0);

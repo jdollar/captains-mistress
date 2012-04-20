@@ -9,6 +9,8 @@ public class NTreeImpl implements NTree{
 	private int columnToMoveAlpha = 0;
 	private int columnToMoveBeta = 0;
 	private int playerTurnCount = 0;
+	private int depth = 0;
+	private int testDepth = 2147483647;
 	private SmartAIImpl tests;
 
 	public NTreeImpl(int step){
@@ -19,19 +21,19 @@ public class NTreeImpl implements NTree{
 		int validMoves = 0;
 		int[] validMoveArray = new int[7]; 
 		int arrayIter = 0;
-		System.out.println("Player: " + player);
+		DummyGameBoardImpl tempBoard = new DummyGameBoardImpl();
+
+		//System.out.println("Player: " + player);
 		if(board.checkValid(column)){
 			if(player != -1){
 				board.setValue(board.getLowestGridValue(column), column, player);
-				board.displayBoard();
-				System.out.println("\n");
+				tempBoard = board;
 			}
 		}
-			playerTurnCount++;
 
 		tests = new SmartAIImpl(board);
 
-		if(playerTurnCount <= stepCount){
+		if(depth <= stepCount){
 			for(int x = 0; x < board.getNumColumns(); x++){
 				if(board.checkValid(x)){
 					validMoves++;
@@ -45,15 +47,18 @@ public class NTreeImpl implements NTree{
 			}
 		}
 
-		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player);
+		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player, depth);
 
-		if(playerTurnCount <= stepCount){
+		if(depth <= stepCount){
 			for(int i = 0; i < arrayIter; i++){
+				depth++;
 				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
+				depth--;
+				board.displayBoard();
+				System.out.println();
 			}
+			
 		}
-
-		playerTurnCount--;
 		return n;
 	}
 
@@ -65,8 +70,9 @@ public class NTreeImpl implements NTree{
 	public int transversal(NodeImpl currentNode){
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
-			if(currentNode.getChild(x).getState() > alpha &&
-					currentNode.getChild(x).getPlayer() == 1){
+			if(currentNode.getChild(x).getState() >= alpha &&
+					currentNode.getChild(x).getPlayer() == 1 && currentNode.getChild(x).getDepth() < testDepth){
+				testDepth = currentNode.getChild(x).getDepth();
 				alpha = currentNode.getChild(x).getState();
 				columnToMoveAlpha = x;
 			}

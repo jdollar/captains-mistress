@@ -6,16 +6,16 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	private static int COL = 7;
 	
 	public DummyGameBoardImpl(DummyGameBoardImpl state){
-		GameBoard = state.getGameBoard();
+		this.GameBoard = state.getGameBoard();
 	}
 	
 	public DummyGameBoardImpl(){
-		GameBoard = new int[ROW][COL];
+		this.GameBoard = new int[ROW][COL];
 		emptyGameBoard();
 	}
 	
 	public int[][] getGameBoard(){
-		return GameBoard;
+		return this.GameBoard;
 	}
 	
 	public int getNumRows(){
@@ -30,7 +30,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		//System.out.print(row);
 		//try catch for out of bounds
 		row = getLowestGridValue(column);
-		GameBoard[row][column] = player;
+		this.GameBoard[row][column] = player;
 	}
 	
 	public boolean checkValid(int columnNumber){
@@ -42,7 +42,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	}
 	
 	public int getValue(int row, int column){
-		return GameBoard[row][column];
+		return this.GameBoard[row][column];
 	}
 	
 	public int getLowestGridValue(int columnNumber){
@@ -71,7 +71,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 		//creates an empty game board and sends it back
 		for(int x = 0; x < ROW; x++){
 			for(int y = 0; y < COL; y++){
-				GameBoard[x][y] = 0;
+				this.GameBoard[x][y] = 0;
 			}
 		}
 	}
@@ -84,10 +84,10 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 			count = x;
 			for(int y = 0; y < ROW; y++){
 				if((count % 2) != 0){
-					GameBoard[y][x] = 1;
+					this.GameBoard[y][x] = 1;
 				}
 				else{
-					GameBoard[y][x] = 2;
+					this.GameBoard[y][x] = 2;
 				}
 			}
 		}
