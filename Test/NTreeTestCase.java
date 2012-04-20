@@ -6,13 +6,13 @@ import mainPack.*;
 
 
 public class NTreeTestCase{
-	NTreeImpl testTree = new NTreeImpl(4);
+	NTreeImpl testTree = new NTreeImpl(0);
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
 	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
-		assertEquals("Result", 2, testTree.transversal(testNode));
+		testTree.transversal(testNode);
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//write some more tests to get the problem determined
 	}
@@ -20,8 +20,10 @@ public class NTreeTestCase{
 	@Test
 	public void testBuildTreeEmpty() {
 		testBoard.emptyGameBoard();
+		testTree = new NTreeImpl(3);
+		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
-		assertEquals("Result", 2, testTree.transversal(testTree.buildTree(testBoard, -1, -1)));
+		//assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, 0)));
 	}
 
 /*	@Test
@@ -57,18 +59,25 @@ public class NTreeTestCase{
 		testBoard.columnNTokens(3, 1, 1);
 		
 		assertEquals("Result", 1, testTree.transversal(testTree.buildTree(testBoard,  0, -1)));
-	}
+	}*/
 
 	@Test
 	public void BestSpotChoosingFirstColumnBestTest(){
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(3, 1, 0);
 		testBoard.columnNTokens(2, 1, 1);
+		testTree = new NTreeImpl(2);
+		testTree.transversal(testTree.buildTree(testBoard,  -1, 0));
+		assertEquals("Result", 0, testTree.getColumnToMove());
 		
-		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard,  0, -1)));
+		testBoard.emptyGameBoard();
+		testBoard.columnNTokens(2, 1, 0);
+		testBoard.columnNTokens(3, 1, 1);
+		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
+		assertEquals("Result", 1, testTree.getColumnToMove());
 	}
 
-	@Test
+/*	@Test
 	public void BestSpotChoosingSecondColumnBestTest(){
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(2, 1, 0);

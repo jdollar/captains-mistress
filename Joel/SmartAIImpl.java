@@ -23,8 +23,6 @@ public class SmartAIImpl extends AI implements SmartAI{
 		int temp = 0;
 
 		for(int x = 0; x < gameBoard.getNumColumns(); x++){
-			System.out.println(gameBoard.getNumColumns());
-			System.out.println(x);
 			lowestGridValue = gameBoard.getLowestGridValue(x);
 			//vertical
 			if(lowestGridValue < 5){

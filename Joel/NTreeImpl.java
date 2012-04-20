@@ -13,6 +13,7 @@ public class NTreeImpl implements NTree{
 	public NTreeImpl(int STEP){
 		stepCount = STEP;
 	}
+	
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
 		if(player != -1){
@@ -32,7 +33,7 @@ public class NTreeImpl implements NTree{
 		}
 
 		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player);
-
+		System.out.println(tests.ScoreDetermine(player));
 		for(int i = 0; i < arrayIter; i++){
 			if(playerTurnCount <= stepCount){
 				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
@@ -44,36 +45,49 @@ public class NTreeImpl implements NTree{
 	}
 
 	public int transversal(NodeImpl currentNode){
-		int checkValue = currentNode.getState();
-		int player = 0;
-		//currentNode.displayNode();
+		int testValue = 0;
 
 		for(int x = 0; x < currentNode.numChildren(); x++){
-			//currentNode.displayNode();
-			currentNode.displayNode();
-			if(currentNode.numChildren() > 0){
+			transversal(currentNode.getChild(x));
+			if(currentNode.getState() > alpha){
+				columnToMove = x;
+			}
+			/*if(currentNode.numChildren() > 0){
 				if(currentNode.getChild(x) != null){
-					checkValue += transversal(currentNode.getChild(x));
-				}
-			}
-
-			player = currentNode.getPlayer();
-
-			if(player == 1){
-				if(checkValue > alpha){
-					alpha = checkValue;
-					columnToMove = x;
-				}
-			}
-			else if(player == 2){
-				if(checkValue > beta){
-					beta = checkValue;
-					columnToMove = x;
-				}
-			}		
+					if(currentNode.getChild(x).getPlayer() == 1){
+						if(currentNode.getChild(x).getState() > alpha){
+							alpha = currentNode.getChild(x).getState();
+							System.out.println("ALPHA");
+							columnToMove = x;
+						}
+					}
+					else if(currentNode.getChild(x).getPlayer() == 2){
+						if(currentNode.getChild(x).getState() > beta){
+							beta = currentNode.getChild(x).getState();
+							System.out.println("BETA");
+							columnToMove = x;
+						}
+					}
+				}*/
 		}
+		
+		
 
-		return checkValue;
+//			player = currentNode.getPlayer();
+//
+//			if(player == 1){
+//				if(checkValue > alpha){
+//					alpha = checkValue;
+//					columnToMove = x;
+//				}
+//			}
+//			else if(player == 2){
+//				if(checkValue > beta){
+//					beta = checkValue;
+//					columnToMove = x;
+//				}
+//			}		
+		return 0;
 	}
 
 	private int changePlayer(int p){
