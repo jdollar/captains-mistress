@@ -6,19 +6,37 @@ import mainPack.*;
 
 
 public class NTreeTestCase{
-	NTreeImpl testTree = new NTreeImpl(4);
+	NTreeImpl testTree = new NTreeImpl(1);
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
 	@Test
 	public void BuildTreeTest(){
 		NodeImpl resultNode = new NodeImpl(1, 7, 1);
 		assertEquals("Result", resultNode.getState(), testTree.buildTree(testBoard, -1, 0).getChild(0).getState());
-		assertEquals("Result", 7, testTree.buildTree(testBoard, -1, 0).getChild(0).numChildren());
+		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).numChildren());
 		assertEquals("Result", resultNode.getPlayer(), testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
+		
+		//test for depth check
+		NodeImpl depthNode = null;
+		testTree = new NTreeImpl(0);
+		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).numChildren());
+	
+		testTree = new NTreeImpl(1);
+		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
+				numChildren());
+		
+		testTree = new NTreeImpl(2);
+		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
+				getChild(0).numChildren());
+		
+		testTree = new NTreeImpl(3);
+		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
+				getChild(0).getChild(0).numChildren());
 	}
 	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
+		testTree = new NTreeImpl(0);
 		testTree.transversal(testNode);
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//write some more tests to get the problem determined

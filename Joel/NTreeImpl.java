@@ -11,8 +11,8 @@ public class NTreeImpl implements NTree{
 	private int playerTurnCount = 0;
 	private SmartAIImpl tests;
 
-	public NTreeImpl(int STEP){
-		stepCount = STEP;
+	public NTreeImpl(int step){
+		stepCount = step;
 	}
 
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
@@ -21,12 +21,9 @@ public class NTreeImpl implements NTree{
 		int arrayIter = 0;
 		if(player != -1){
 			board.setValue(board.getLowestGridValue(column), column, player);
-			playerTurnCount++;
+			
 		}
-		else if(player == 0){
-			player = -1;
-		}
-
+		playerTurnCount++;
 		tests = new SmartAIImpl(board);
 
 		if(playerTurnCount <= stepCount){
@@ -53,8 +50,6 @@ public class NTreeImpl implements NTree{
 	}
 
 	public int transversal(NodeImpl currentNode){
-		int testValue = 0;
-
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
 			if(currentNode.getChild(x).getState() > alpha &&
