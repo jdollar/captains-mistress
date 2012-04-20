@@ -29,7 +29,6 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	public void setValue(int row, int column, int player){
 		//System.out.print(row);
 		//try catch for out of bounds
-		row = getLowestGridValue(column);
 		this.GameBoard[row][column] = player;
 	}
 	

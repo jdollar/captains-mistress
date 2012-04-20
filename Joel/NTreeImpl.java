@@ -20,6 +20,7 @@ public class NTreeImpl implements NTree{
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
 		int[] validMoveArray = new int[7]; 
+		DummyGameBoardImpl tempBoard = new DummyGameBoardImpl(board);
 
 		//checks if move possible on column and if not root node
 		if(board.checkValid(column)){
@@ -28,15 +29,15 @@ public class NTreeImpl implements NTree{
 				board.setValue(board.getLowestGridValue(column), column, player);
 			}
 		}
-		
+
 		//creates an instance of the SmartAI for the score determination.
 		tests = new SmartAIImpl(board);
 
 		//as long as max steps haven't been reached check to see how many children
 		//are possible and input moves possible into an array so when buildtree is
- 		//called it knows which column to use.
+		//called it knows which column to use.
 
-		if(depth <= stepCount){
+		if(depth <= stepCount + 1){
 			for(int x = 0; x < board.getNumColumns(); x++){
 				if(board.checkValid(x)){
 					validMoveArray[validMoves] = x;
@@ -49,12 +50,13 @@ public class NTreeImpl implements NTree{
 		//it can make. Also stores the current player and depth of the node in the tree
 		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player, depth);
 
-		if(depth <= stepCount){
+		if(depth <= stepCount + 1){
 			for(int i = 0; i < validMoves; i++){
-				//creates a child with new gameboard created here and places it in child of current ndoe
-				depth++;
-				n.setChildAt(i, buildTree((new DummyGameBoardImpl(board)), changePlayer(player), validMoveArray[i]));
-				depth--;
+					//creates a child with new gameboard created here and places it in child of current node
+					depth++;
+					tempBoard.displayBoard();
+					n.setChildAt(i, buildTree(tempBoard, changePlayer(player), validMoveArray[i]));
+					depth--;
 			}
 		}
 
