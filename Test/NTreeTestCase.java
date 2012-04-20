@@ -12,13 +12,19 @@ public class NTreeTestCase{
 	@Test
 	public void BuildTreeTest(){
 		NodeImpl resultNode = new NodeImpl(1, 7, 1);
-		assertEquals("Result", resultNode.getState(), testTree.buildTree(testBoard, -1, 0).getChild(0).getState());
+		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).getState());
+		testBoard.emptyGameBoard();
+		testTree = new NTreeImpl(1);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).numChildren());
-		assertEquals("Result", resultNode.getPlayer(), testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
+		testTree = new NTreeImpl(2);
+		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
+		assertEquals("Result", 2, testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
 		
-		//test for depth check
-		NodeImpl depthNode = null;
-		testTree = new NTreeImpl(0);
+		testTree = new NTreeImpl(2);
+		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).
+				getChild(0).getState());
+	
+		/*testTree = new NTreeImpl(0);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).numChildren());
 	
 		testTree = new NTreeImpl(1);
@@ -31,12 +37,11 @@ public class NTreeTestCase{
 		
 		testTree = new NTreeImpl(3);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
-				getChild(0).getChild(0).numChildren());
+				getChild(0).getChild(0).numChildren());*/
 	}
-	@Test
+/*	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
-		testTree = new NTreeImpl(0);
 		testTree.transversal(testNode);
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//write some more tests to get the problem determined
@@ -45,11 +50,11 @@ public class NTreeTestCase{
 	@Test
 	public void testEmptyGameBoardMove() {
 		testBoard.emptyGameBoard();
-		testTree = new NTreeImpl(3);
+		testTree = new NTreeImpl(1);
 		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, 0)));
-	}
+	}*/
 
 /*	@Test
 	public void testBuildTreeFull(){
@@ -86,7 +91,7 @@ public class NTreeTestCase{
 		assertEquals("Result", 1, testTree.transversal(testTree.buildTree(testBoard,  0, -1)));
 	}*/
 
-	@Test
+/*	@Test
 	public void BestSpotChoosingFirstColumnBestTest(){
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(3, 1, 0);
@@ -101,7 +106,7 @@ public class NTreeTestCase{
 		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
 		assertEquals("Result", 1, testTree.getColumnToMove());
 	}
-
+*/
 /*	@Test
 	public void BestSpotChoosingSecondColumnBestTest(){
 		testBoard.emptyGameBoard();
