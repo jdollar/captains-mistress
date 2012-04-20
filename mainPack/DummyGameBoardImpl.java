@@ -28,6 +28,8 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 	
 	public void setValue(int row, int column, int player){
 		//System.out.print(row);
+		//try catch for out of bounds
+		row = getLowestGridValue(column);
 		GameBoard[row][column] = player;
 	}
 	
@@ -53,7 +55,7 @@ public class DummyGameBoardImpl implements DummyGameBoard{
 				}
 			}
 		
-		return 0;
+		return -1;
 	}
 	
 	public void displayBoard(){

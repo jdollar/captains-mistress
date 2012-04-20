@@ -16,30 +16,38 @@ public class NTreeTestCase{
 		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(1);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).numChildren());
+		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(2);
 		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
-		assertEquals("Result", 2, testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
+		testBoard.emptyGameBoard();
+		assertEquals("Result", 2, testTree.buildTree(testBoard, -1, 0).getChild(0).
+				getChild(0).getPlayer());
 		
+		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(2);
 		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).
 				getChild(0).getState());
 	
-		/*testTree = new NTreeImpl(0);
+		testBoard.emptyGameBoard();
+		testTree = new NTreeImpl(0);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).numChildren());
 	
+		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(1);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
 				numChildren());
 		
+		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(2);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
 				getChild(0).numChildren());
 		
+		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(3);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
-				getChild(0).getChild(0).numChildren());*/
+				getChild(0).getChild(0).numChildren());
 	}
-/*	@Test
+	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
 		testTree.transversal(testNode);
@@ -54,7 +62,7 @@ public class NTreeTestCase{
 		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, 0)));
-	}*/
+	}
 
 /*	@Test
 	public void testBuildTreeFull(){

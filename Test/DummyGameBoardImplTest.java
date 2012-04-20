@@ -24,6 +24,15 @@ public class DummyGameBoardImplTest {
 	}
 
 	@Test
+	public void checkValidTest(){
+		testBoard.fullGameBoardAlternating();
+		assertFalse(testBoard.checkValid(0));
+		assertFalse(testBoard.checkValid(4));
+		
+		testBoard.emptyGameBoard();
+		assertTrue(testBoard.checkValid(0));
+	}
+	@Test
 	public void getValue(){
 		testBoard.emptyGameBoard();
 		assertEquals("Result", 0, testBoard.getValue(0, 0));

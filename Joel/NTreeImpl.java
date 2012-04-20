@@ -19,12 +19,16 @@ public class NTreeImpl implements NTree{
 		int validMoves = 0;
 		int[] validMoveArray = new int[7]; 
 		int arrayIter = 0;
-		if(player != -1){
-			board.setValue(board.getLowestGridValue(column), column, player);
-			board.displayBoard();
-			System.out.println("\n");
+		System.out.println("Player: " + player);
+		if(board.checkValid(column)){
+			if(player != -1){
+				board.setValue(board.getLowestGridValue(column), column, player);
+				board.displayBoard();
+				System.out.println("\n");
+			}
 		}
-		playerTurnCount++;
+			playerTurnCount++;
+
 		tests = new SmartAIImpl(board);
 
 		if(playerTurnCount <= stepCount){
@@ -32,10 +36,12 @@ public class NTreeImpl implements NTree{
 				if(board.checkValid(x)){
 					validMoves++;
 					validMoveArray[arrayIter] = x;
-					System.out.println(validMoveArray);
-					System.out.println("\n");
 					arrayIter++;
 				}
+			}
+			for(int y = 0; y < arrayIter; y++){
+				System.out.print(validMoveArray[y] + ", ");
+				System.out.println();
 			}
 		}
 
@@ -51,6 +57,11 @@ public class NTreeImpl implements NTree{
 		return n;
 	}
 
+	/*public NodeImpl buildTreeFix(DummyGameBoardImpl board, int player, int column){
+
+		NodeImpl n = new NodeImpl(tester.ScoreDetermine(player), validMoves, player);
+		return n;
+	}*/
 	public int transversal(NodeImpl currentNode){
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
