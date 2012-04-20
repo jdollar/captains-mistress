@@ -6,7 +6,8 @@ public class NTreeImpl implements NTree{
 	private int alpha = -5;
 	private int beta = -6;
 	private int stepCount;
-	private int columnToMove = 0;
+	private int columnToMoveAlpha = 0;
+	private int columnToMoveBeta = 0;
 	private int playerTurnCount = 0;
 	private SmartAIImpl tests;
 
@@ -19,6 +20,9 @@ public class NTreeImpl implements NTree{
 		if(player != -1){
 			board.setValue(board.getLowestGridValue(column), column, player);
 			playerTurnCount++;
+		}
+		else if(player == 0){
+			player = -1;
 		}
 
 		tests = new SmartAIImpl(board);
@@ -46,11 +50,13 @@ public class NTreeImpl implements NTree{
 
 	public int transversal(NodeImpl currentNode){
 		int testValue = 0;
-
+//-1?
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
-			if(currentNode.getState() > alpha){
-				columnToMove = x;
+			if(currentNode.getChild(x).getState() > alpha &&
+					currentNode.getChild(x).getPlayer() == 1){
+				alpha = currentNode.getChild(x).getState();
+				columnToMoveAlpha = x;
 			}
 			/*if(currentNode.numChildren() > 0){
 				if(currentNode.getChild(x) != null){
@@ -104,6 +110,6 @@ public class NTreeImpl implements NTree{
 	}
 
 	public int getColumnToMove(){
-		return this.columnToMove;
+		return this.columnToMoveAlpha;
 	}
 }
