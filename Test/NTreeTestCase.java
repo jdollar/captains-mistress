@@ -6,9 +6,16 @@ import mainPack.*;
 
 
 public class NTreeTestCase{
-	NTreeImpl testTree = new NTreeImpl(0);
+	NTreeImpl testTree = new NTreeImpl(4);
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
+	@Test
+	public void BuildTreeTest(){
+		NodeImpl resultNode = new NodeImpl(1, 7, 1);
+		assertEquals("Result", resultNode.getState(), testTree.buildTree(testBoard, -1, 0).getChild(0).getState());
+		assertEquals("Result", 7, testTree.buildTree(testBoard, -1, 0).getChild(0).numChildren());
+		assertEquals("Result", resultNode.getPlayer(), testTree.buildTree(testBoard, -1, 0).getChild(0).getPlayer());
+	}
 	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1);
@@ -18,7 +25,7 @@ public class NTreeTestCase{
 	}
 	
 	@Test
-	public void testBuildTreeEmpty() {
+	public void testEmptyGameBoardMove() {
 		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(3);
 		testTree.transversal(testTree.buildTree(testBoard, -1, 0));

@@ -14,9 +14,11 @@ public class NTreeImpl implements NTree{
 	public NTreeImpl(int STEP){
 		stepCount = STEP;
 	}
-	
+
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
+		int[] validMoveArray = new int[7]; 
+		int arrayIter = 0;
 		if(player != -1){
 			board.setValue(board.getLowestGridValue(column), column, player);
 			playerTurnCount++;
@@ -26,20 +28,22 @@ public class NTreeImpl implements NTree{
 		}
 
 		tests = new SmartAIImpl(board);
-		int[] validMoveArray = new int[7];
-		int arrayIter = 0;
-		for(int x = 0; x < board.getNumColumns(); x++){
-			if(board.checkValid(x)){
-				validMoves++;
-				validMoveArray[arrayIter] = x;
-				arrayIter++;
+
+		if(playerTurnCount <= stepCount){
+			for(int x = 0; x < board.getNumColumns(); x++){
+				if(board.checkValid(x)){
+					validMoves++;
+					validMoveArray[arrayIter] = x;
+					arrayIter++;
+				}
 			}
 		}
 
 		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player);
+
 		System.out.println(tests.ScoreDetermine(player));
-		for(int i = 0; i < arrayIter; i++){
-			if(playerTurnCount <= stepCount){
+		if(playerTurnCount <= stepCount){
+			for(int i = 0; i < arrayIter; i++){
 				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
 			}
 		}
@@ -50,7 +54,7 @@ public class NTreeImpl implements NTree{
 
 	public int transversal(NodeImpl currentNode){
 		int testValue = 0;
-//-1?
+
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
 			if(currentNode.getChild(x).getState() > alpha &&
@@ -76,23 +80,23 @@ public class NTreeImpl implements NTree{
 					}
 				}*/
 		}
-		
-		
 
-//			player = currentNode.getPlayer();
-//
-//			if(player == 1){
-//				if(checkValue > alpha){
-//					alpha = checkValue;
-//					columnToMove = x;
-//				}
-//			}
-//			else if(player == 2){
-//				if(checkValue > beta){
-//					beta = checkValue;
-//					columnToMove = x;
-//				}
-//			}		
+
+
+		//			player = currentNode.getPlayer();
+		//
+		//			if(player == 1){
+		//				if(checkValue > alpha){
+		//					alpha = checkValue;
+		//					columnToMove = x;
+		//				}
+		//			}
+		//			else if(player == 2){
+		//				if(checkValue > beta){
+		//					beta = checkValue;
+		//					columnToMove = x;
+		//				}
+		//			}		
 		return 0;
 	}
 
