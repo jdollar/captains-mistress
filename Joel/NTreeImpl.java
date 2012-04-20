@@ -20,53 +20,47 @@ public class NTreeImpl implements NTree{
 	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
 		int validMoves = 0;
 		int[] validMoveArray = new int[7]; 
-		int arrayIter = 0;
-		DummyGameBoardImpl tempBoard = new DummyGameBoardImpl();
 
-		//System.out.println("Player: " + player);
+		//checks if move possible on column and if not root node
 		if(board.checkValid(column)){
 			if(player != -1){
+				//if not the root node change the value of the current column
 				board.setValue(board.getLowestGridValue(column), column, player);
-				tempBoard = board;
 			}
 		}
-
+		
+		//creates an instance of the SmartAI for the score determination.
 		tests = new SmartAIImpl(board);
+
+		//as long as max steps haven't been reached check to see how many children
+		//are possible and input moves possible into an array so when buildtree is
+ 		//called it knows which column to use.
 
 		if(depth <= stepCount){
 			for(int x = 0; x < board.getNumColumns(); x++){
 				if(board.checkValid(x)){
+					validMoveArray[validMoves] = x;
 					validMoves++;
-					validMoveArray[arrayIter] = x;
-					arrayIter++;
 				}
-			}
-			for(int y = 0; y < arrayIter; y++){
-				System.out.print(validMoveArray[y] + ", ");
-				System.out.println();
 			}
 		}
 
+		//creates a node for the tree based on score of current position and how many different children
+		//it can make. Also stores the current player and depth of the node in the tree
 		NodeImpl n = new NodeImpl(tests.ScoreDetermine(player), validMoves, player, depth);
 
 		if(depth <= stepCount){
-			for(int i = 0; i < arrayIter; i++){
+			for(int i = 0; i < validMoves; i++){
+				//creates a child with new gameboard created here and places it in child of current ndoe
 				depth++;
-				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
+				n.setChildAt(i, buildTree((new DummyGameBoardImpl(board)), changePlayer(player), validMoveArray[i]));
 				depth--;
-				board.displayBoard();
-				System.out.println();
 			}
-			
 		}
-		return n;
+
+		return n; //returns node once no more children can be derived or max steps reached
 	}
 
-	/*public NodeImpl buildTreeFix(DummyGameBoardImpl board, int player, int column){
-
-		NodeImpl n = new NodeImpl(tester.ScoreDetermine(player), validMoves, player);
-		return n;
-	}*/
 	public int transversal(NodeImpl currentNode){
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
