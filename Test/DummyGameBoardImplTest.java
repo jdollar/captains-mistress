@@ -50,4 +50,15 @@ public class DummyGameBoardImplTest {
 		assertEquals("Result", 1, testBoard.getValue(4, 0));
 		assertEquals("Result", 0, testBoard.getValue(0, 2));
 	}
+	
+	@Test
+	public void instanceTest(){
+		testBoard.emptyGameBoard();
+		assertEquals("Result", 0, testBoard.getValue(0, 0));
+		DummyGameBoardImpl instance = new DummyGameBoardImpl();
+		testBoard.setValue(0, 0, 1);
+		assertEquals("Result", 1, testBoard.getValue(0, 0));
+		assertEquals("Result", 0, instance.getValue(0, 0));
+
+	}
 }

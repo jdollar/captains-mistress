@@ -50,26 +50,7 @@ public class SmartAIImplTest {
 		assertEquals("Result", 2, tester.rightDownCheck(0, 2, 1));
 	}
 	*/
-	@Test
-	public void testScoreDetermine(){
-		tester = new SmartAIImpl(testBoard);
-		
-		//test for vertical scoring
-		testBoard.emptyGameBoard();
-		testBoard.columnNTokens(3, 1, 0);
-		assertEquals("Result", 3, tester.ScoreDetermine(1));
-		
-		//test if picks best choice (highest value)
-		testBoard.columnNTokens(4, 1, 3);
-		assertEquals("Result", 4, tester.ScoreDetermine(1));
-		
-		//test horizontal
-		testBoard.emptyGameBoard();
-		testBoard.columnNTokens(1, 1, 0);
-		testBoard.columnNTokens(1, 1, 1);
-		testBoard.columnNTokens(1, 1, 2);
-		assertEquals("Result", 3, tester.ScoreDetermine(1));
-	}
+	
 //	@Test
 //	public void testScoreDetermine() {
 //		fail("Not yet implemented");

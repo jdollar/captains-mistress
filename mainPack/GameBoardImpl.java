@@ -1,20 +1,21 @@
 package mainPack;
-public class  GameBoardImpl implements GameBoard{
-    private int[][] gameboard;
-	private static int ROW = 6;
-	private static int COL = 7;
+public class GameBoardImpl implements GameBoard{
+    //changed to protected to do tests
+	protected int[][] gameBoard;
+	protected static int ROW = 6;
+	protected static int COL = 7;
 
-	public void GameBoardImpl(GameBoardImpl state){
-		gameboard = state.getGameBoard();
+	public GameBoardImpl(GameBoardImpl state){
+		gameBoard = state.getGameBoard();
 	}
 
-	public void GameBoardImpl(){
-		gameboard = new int[ROW][COL];
+	public GameBoardImpl(){
+		gameBoard = new int[ROW][COL];
 		emptyGameBoard();
 	}
 	
 	public int[][] getGameBoard(){
-		return gameboard;
+		return gameBoard;
 	}
 	
 	public int getNumRows(){
@@ -27,7 +28,7 @@ public class  GameBoardImpl implements GameBoard{
 	
 	public void setValue(int row, int column, int player){
 		//System.out.print(row);
-		gameboard[row][column] = player;
+		gameBoard[row][column] = player;
 	}
 	
 	public boolean checkValid(int columnNumber){
@@ -39,7 +40,7 @@ public class  GameBoardImpl implements GameBoard{
 	}
 	
 	public int getValue(int row, int column){
-		return gameboard[row][column];
+		return gameBoard[row][column];
 	}
 	
 	public int getLowestGridValue(int columnNumber){
@@ -58,7 +59,7 @@ public class  GameBoardImpl implements GameBoard{
 	public void displayBoard(){
 		for(int x = 0; x < ROW; x++){
 			for(int y = 0; y < COL; y++){
-				System.out.print(gameboard[x][y]);
+				System.out.print(gameBoard[x][y]);
 			}
 			System.out.print("\n");
 		}
@@ -68,7 +69,7 @@ public class  GameBoardImpl implements GameBoard{
 		//creates an empty game board and sends it back
 		for(int x = 0; x < ROW; x++){
 			for(int y = 0; y < COL; y++){
-				gameboard[x][y] = 0;
+				gameBoard[x][y] = 0;
 			}
 		}
 	}

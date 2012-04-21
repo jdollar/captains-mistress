@@ -1,8 +1,6 @@
 package mainPack;     
 public interface GameBoard {
 		public void emptyGameBoard();
-		public void GameBoardImpl(GameBoardImpl state);
-		public void GameBoardImpl();
 		public int[][] getGameBoard();
 		public int getNumRows();
 		public int getNumColumns();
