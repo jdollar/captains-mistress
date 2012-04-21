@@ -13,20 +13,15 @@ public class NodeImplTest {
 		assertEquals("Result", 1, n.getPlayer());
 		assertEquals("Result", 1, n.numChildren());
 
-		NodeImpl t = new NodeImpl(-1, 0, -1, 0);
+		NodeImpl t = new NodeImpl(-1, 7, -1, 0);
 		assertEquals("Result", -1, t.getState());
 		assertEquals("Result", -1, t.getPlayer());
-		assertEquals("Result", 0, t.numChildren());
+		assertEquals("Result", 7, t.numChildren());
 
 		NodeImpl q = new NodeImpl(0, 0, 0, 0);
 		assertEquals("Result", 0, q.getState());
 		assertEquals("Result", 0, q.getPlayer());
 		assertEquals("Result", 0, q.numChildren());
-	}
-
-	@Test
-	public void testNumChildren() {
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -49,15 +44,4 @@ public class NodeImplTest {
 		NodeImpl q = new NodeImpl(0, 0, 0, 0);
 		assertEquals("Result", 0, q.getState());
 	}
-
-	@Test
-	public void testGetPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetChild() {
-		fail("Not yet implemented");
-	}
-
 }
