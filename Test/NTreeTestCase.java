@@ -9,9 +9,9 @@ public class NTreeTestCase{
 	NTreeImpl testTree = new NTreeImpl(1);
 	DummyGameBoardImpl testBoard = new DummyGameBoardImpl();
 	
-	/*@Test
+	@Test
 	public void BuildTreeTest(){
-		NodeImpl resultNode = new NodeImpl(1, 7, 1);
+		NodeImpl resultNode = new NodeImpl(1, 7, 1, 0);
 		assertEquals("Result", 1, testTree.buildTree(testBoard, -1, 0).getChild(0).getState());
 		testBoard.emptyGameBoard();
 		testTree = new NTreeImpl(1);
@@ -46,7 +46,8 @@ public class NTreeTestCase{
 		testTree = new NTreeImpl(3);
 		assertEquals("Result", 0, testTree.buildTree(testBoard, -1, 0).getChild(0).
 				getChild(0).getChild(0).numChildren());
-	}*/
+	}
+	
 	@Test
 	public void transveralTest(){
 		NodeImpl testNode = new NodeImpl(2, 0, 1, 0);
@@ -64,13 +65,13 @@ public class NTreeTestCase{
 		//assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, 0)));
 	}
 
-/*	@Test
+	@Test
 	public void testBuildTreeFull(){
 		testBoard.emptyGameBoard();
 		testBoard.fullGameBoardAlternating();
 		
 		assertEquals("Result", -1, testTree.transversal((testTree.buildTree(testBoard, 1, 0))));
-	}*/
+	}
 
 
 	@Test
@@ -90,14 +91,14 @@ public class NTreeTestCase{
 		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard,  0, -1)));
 	}
 
-/*	@Test
+	@Test
 	public void DefendVsWinOpponentSecondColumnTest(){
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(3, 2, 0);
 		testBoard.columnNTokens(3, 1, 1);
 		
 		assertEquals("Result", 1, testTree.transversal(testTree.buildTree(testBoard,  0, -1)));
-	}*/
+	}
 
 	@Test
 	public void BestSpotChoosingFirstColumnBestTest(){
@@ -115,7 +116,7 @@ public class NTreeTestCase{
 		assertEquals("Result", 1, testTree.getColumnToMove());
 	}
 
-/*	@Test
+	@Test
 	public void BestSpotChoosingSecondColumnBestTest(){
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(2, 1, 0);
@@ -150,7 +151,7 @@ public class NTreeTestCase{
 		assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard,  0, -1)));
 	}
 	
-	@Test
+	/*@Test
 	public void testtransversal() {
 		fail("Not yet implemented");
 	}
