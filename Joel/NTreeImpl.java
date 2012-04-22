@@ -59,7 +59,7 @@ public class NTreeImpl implements NTree{
 
 			for(int i = 0; i < validMoves; i++){
 				//creates a child with new gameboard created here and places it in child of current node
-				
+
 
 				/*done for testing. Getting weird errors with array not populating right
 				 *Placed board set value inside this loop so that board is explicitly
@@ -69,8 +69,8 @@ public class NTreeImpl implements NTree{
 					board.displayBoard();
 					System.out.println();
 				}
-				
-				//board =  new DummyGameBoardImpl(tempBoard.getGameBoard()); //Joel, unfortunately this doesn't work to clone an object.
+
+				//board =  new DummyGameBoardImpl(tempBoard.getGameBoard());
 
 
 				/*should create a child with one of the valid moves recursively running this method
