@@ -59,7 +59,7 @@ public class NTreeImpl implements NTree{
 				 *board value then assigned one by one.*/
 				board.displayBoard();
 				System.out.println();
-				board = tempBoard;
+				board = tempBoard; //Joel, unfortunately this doesn't work to clone an object.
 				
 				//checks if move possible on column and if not root node
 				if(board.checkValid(column)){
@@ -71,7 +71,7 @@ public class NTreeImpl implements NTree{
 				
 				/*should create a child with one of the valid moves recursively running this method
 				 *again until depth has been reached then go out one layer and do the next child
-				 *of that node until we get all children of root'ss first 7 children for stepCount
+				 *of that node until we get all children of root's first 7 children for stepCount
 				 *layers*/
 				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
 				depth--;
