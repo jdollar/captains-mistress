@@ -50,8 +50,11 @@ public class NTreeTestCase{
 	
 	@Test
 	public void transveralTest(){
-		NodeImpl testNode = new NodeImpl(2, 0, 1, 0);
+		NodeImpl testNode = new NodeImpl(2, 2, 1, 0);
+		testNode.setChildAt(0, new NodeImpl(2, 0, 1, 1));
+		testNode.setChildAt(1, new NodeImpl(4, 0, 1, 1));
 		testTree.transversal(testNode);
+		assertEquals("Result", 4, testTree.getAlpha());
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//write some more tests to get the problem determined
 	}
@@ -105,7 +108,7 @@ public class NTreeTestCase{
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(3, 1, 0);
 		testBoard.columnNTokens(2, 1, 1);
-		testTree = new NTreeImpl(2);
+		testTree = new NTreeImpl(5);
 		testTree.transversal(testTree.buildTree(testBoard,  -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		

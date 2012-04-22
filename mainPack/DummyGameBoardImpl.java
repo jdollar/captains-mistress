@@ -10,6 +10,10 @@ public class DummyGameBoardImpl extends GameBoardImpl implements DummyGameBoard{
 		emptyGameBoard();
 	}
 	
+	public DummyGameBoardImpl(int[][] board){
+		gameBoard = board;
+	}
+	
 	public int[][] getGameBoard(){
 		return gameBoard;
 	}

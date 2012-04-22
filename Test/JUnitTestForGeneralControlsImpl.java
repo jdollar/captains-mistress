@@ -1,7 +1,8 @@
-package Mohammed;
+package Test;
 
 import junit.framework.TestCase;
 import mainPack.DummyGameBoardImpl;
+import Mohammed.*;
 
 /**
  *

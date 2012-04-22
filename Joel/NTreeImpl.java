@@ -27,11 +27,19 @@ public class NTreeImpl implements NTree{
 		 *parent gameBoard reference for the children so they should
 		 *restart their states with the parent gameBoard then explore
 		 *all possible choices*/
-		DummyGameBoardImpl tempBoard = new DummyGameBoardImpl(board);
+		//DummyGameBoardImpl tempBoard = new DummyGameBoardImpl(board.getGameBoard());
+		
+		//checks if move possible on column and if not root node
+		if(board.checkValid(column)){
+			if(player != -1){
+				//if not the root node change the value of the current column
+				board.setValue(board.getLowestGridValue(column), column, player);
+			}
+		}
 
 		//creates an instance of the StateChecker for the score determination.
 		tests = new StateCheckImpl(board);
-
+		depth++;
 		/*as long as max steps haven't been reached check to see how many children
 		 *are possible and input moves possible into an array so when buildtree is
 		 *called it knows which column to use.*/
@@ -51,40 +59,41 @@ public class NTreeImpl implements NTree{
 
 			for(int i = 0; i < validMoves; i++){
 				//creates a child with new gameboard created here and places it in child of current node
-				depth++;
 				
+
 				/*done for testing. Getting weird errors with array not populating right
 				 *Placed board set value inside this loop so that board is explicitly
 				 *(via assignment statement below) getting reinitialized as original
 				 *board value then assigned one by one.*/
-				board.displayBoard();
-				System.out.println();
-				board = tempBoard; //Joel, unfortunately this doesn't work to clone an object.
-				
-				//checks if move possible on column and if not root node
-				if(board.checkValid(column)){
-					if(player != -1){
-						//if not the root node change the value of the current column
-						board.setValue(board.getLowestGridValue(validMoveArray[i]), validMoveArray[i], player);
-					}
+				if(stepCount == 5){
+					board.displayBoard();
+					System.out.println();
 				}
 				
+				//board =  new DummyGameBoardImpl(tempBoard.getGameBoard()); //Joel, unfortunately this doesn't work to clone an object.
+
+
 				/*should create a child with one of the valid moves recursively running this method
 				 *again until depth has been reached then go out one layer and do the next child
 				 *of that node until we get all children of root's first 7 children for stepCount
 				 *layers*/
-				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board), changePlayer(player), validMoveArray[i]));
-				depth--;
+				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board.getGameBoard()), changePlayer(player), validMoveArray[i]));
+				board.setValue(board.getLowestGridValue(validMoveArray[i]) + 1, validMoveArray[i], 0);
+				
 			}
 		}
-
+		//board.setValue(board.getLowestGridValue(column) + 1, column, 0);
+		depth--;
 		return n; //returns node once no more children can be derived or max steps reached
 	}
 
+	public int getAlpha(){
+		return alpha;
+	}
 	public int transversal(NodeImpl currentNode){
 		for(int x = 0; x < currentNode.numChildren(); x++){
 			transversal(currentNode.getChild(x));
-			if(currentNode.getChild(x).getState() >= alpha &&
+			if(currentNode.getState() >= alpha &&
 					currentNode.getChild(x).getPlayer() == 1 && currentNode.getChild(x).getDepth() < testDepth){
 				testDepth = currentNode.getChild(x).getDepth();
 				alpha = currentNode.getChild(x).getState();
@@ -125,7 +134,7 @@ public class NTreeImpl implements NTree{
 		//					columnToMove = x;
 		//				}
 		//			}		
-		return 0;
+		return -1;
 	}
 
 	private int changePlayer(int p){
