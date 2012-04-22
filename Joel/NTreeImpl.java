@@ -90,13 +90,21 @@ public class NTreeImpl implements NTree{
 	public int getAlpha(){
 		return alpha;
 	}
-	public int transversal(NodeImpl currentNode){
-		for(int x = 0; x < currentNode.numChildren(); x++){
-			transversal(currentNode.getChild(x));
+	
+	public boolean transversal(NodeImpl currentNode){
+		boolean choice = false;
+		boolean send = false;
+		for(int x = 0; x <= currentNode.numChildren(); x++){
+			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
+				choice = transversal(currentNode.getChild(x));
+				if(choice == true){
+					columnToMoveAlpha = x;
+				}
+			}
 			if(currentNode.getState() >= alpha &&
-					currentNode.getChild(x).getPlayer() == 1 && currentNode.getChild(x).getDepth() < testDepth){
-				testDepth = currentNode.getChild(x).getDepth();
-				alpha = currentNode.getChild(x).getState();
+					currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepth){
+				testDepth = currentNode.getDepth();
+				alpha = currentNode.getState();
 				columnToMoveAlpha = x;
 			}
 			/*if(currentNode.numChildren() > 0){
@@ -134,7 +142,7 @@ public class NTreeImpl implements NTree{
 		//					columnToMove = x;
 		//				}
 		//			}		
-		return -1;
+		return choice;
 	}
 
 	private int changePlayer(int p){

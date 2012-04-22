@@ -14,6 +14,7 @@ public class SmartAIImpl extends AI implements SmartAI{
 	
 	public int AStar(){
 		NTreeImpl alphaTree = new NTreeImpl(STEPS);
-		return alphaTree.transversal(alphaTree.buildTree(gameBoard, 0, -1));
+		alphaTree.transversal(alphaTree.buildTree(gameBoard, 0, -1));
+		return alphaTree.getColumnToMove();
 	}
 }
