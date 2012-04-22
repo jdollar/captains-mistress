@@ -65,7 +65,7 @@ public class NTreeImpl implements NTree{
 				 *Placed board set value inside this loop so that board is explicitly
 				 *(via assignment statement below) getting reinitialized as original
 				 *board value then assigned one by one.*/
-				if(stepCount == 5){
+				if(stepCount == 1){
 					board.displayBoard();
 					System.out.println();
 				}
@@ -95,14 +95,16 @@ public class NTreeImpl implements NTree{
 		boolean choice = false;
 		boolean send = false;
 		for(int x = 0; x <= currentNode.numChildren(); x++){
+			System.out.println(x);
+			System.out.println(currentNode.getState());
+			System.out.println("Alpha: " + alpha);
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
-				choice = transversal(currentNode.getChild(x));
-				if(choice == true){
+				if(transversal(currentNode.getChild(x))){
 					columnToMoveAlpha = x;
 				}
 			}
 			if(currentNode.getState() >= alpha &&
-					currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepth){
+					currentNode.getPlayer() == 1 /*&& currentNode.getDepth() < testDepth*/){
 				testDepth = currentNode.getDepth();
 				alpha = currentNode.getState();
 				columnToMoveAlpha = x;
