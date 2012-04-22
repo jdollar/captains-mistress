@@ -6,10 +6,11 @@ public class DisplayImpl implements Display{
   private int column;
   private int menuInput;
   private int menuPlayer;
+  private int aiChoice;
 
-  public void ReDrawGameBoard(int[][] gameboard){
-    row = gameboard.length;
-    column = gameboard[0].length;
+  public void ReDrawGameBoard(int[][] gameBoard){
+    row = gameBoard.length;
+    column = gameBoard[0].length;
 
     System.out.println("");
 
@@ -22,13 +23,13 @@ public class DisplayImpl implements Display{
     for (int x = 0; x < row; x++) {
       System.out.print("|");
       for (int y = 0; y < column; y++) {
-        if (gameboard[x][y] == 0){
+        if (gameBoard[x][y] == 0){
           System.out.print("_");
         }
-        else if (gameboard[x][y] == 1){
+        else if (gameBoard[x][y] == 1){
           System.out.print("X");
         }
-        else if (gameboard[x][y] == 2){
+        else if (gameBoard[x][y] == 2){
           System.out.print("O");
         }
         else {
@@ -102,5 +103,27 @@ public class DisplayImpl implements Display{
     }
     System.out.println("");
     return menuPlayer;
+  }
+  public int AIChoice(){
+    Scanner input = new Scanner (System.in);
+
+    while (aiChoice != 1 && aiChoice != 2){
+      System.out.println("");
+      System.out.println("Computer Difficulty");
+      System.out.println("");
+      System.out.println("1) Smart");
+      System.out.println("2) Dumb");
+      System.out.println("");
+
+      try {
+        aiChoice = input.nextInt();
+      }
+      catch (InputMismatchException e) {
+        System.out.println("");
+        System.out.println(input.next() + " is invalid data!");
+      }
+    }
+    System.out.println("");
+    return aiChoice;
   }
 }

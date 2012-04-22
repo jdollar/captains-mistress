@@ -18,6 +18,8 @@ public class Test{
 
     //players = display.DrawMenu();
     //System.out.println(players);
-    display.ReDrawGameBoard(gameboard);
+    players = display.AIChoice();
+    System.out.println(players);
+    //display.ReDrawGameBoard(gameboard);
   }
 }

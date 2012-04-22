@@ -7,7 +7,8 @@ public class  GameEngineImpl implements GameEngine{
 	int playerToken;
 	public void GameLoop(){
 		boolean loopcondition = true;
-		int choice = 0;
+		int numberPlayers = 0;
+		int aiChoice = 0;
 
   		StateCheckImpl loopChecks = new StateCheckImpl();     // Calls all the information needed// for running the game
 		DisplayImpl numPlayers = new DisplayImpl();
@@ -15,13 +16,26 @@ public class  GameEngineImpl implements GameEngine{
 		
     
   		while (loopcondition){
-			choice = numPlayers.DrawMenu();
+			numberPlayers = numPlayers.DrawMenu();
+			aiChoice = numPlayers.AIChoice();
 
-			if (choice == 0) //User selects computer vs computer, which is 2 AI's
+			if (aiChoice == 0) //User selects computer vs computer, which is 2 AI's
 			{
+                          if (aiChoice == 1) {             //Smart AI
+
+                          }
+                          else if (aiChoice == 2) {        //Dumb AI
+
+                          }
 			}
-			else if (choice == 1) //User selects player vs computer, which is 1 AI and 1 player
+			else if (aiChoice == 1) //User selects player vs computer, which is 1 AI and 1 player
 			{
+                          if (aiChoice == 1) {            //Smart AI
+
+                          }
+                          else if (aiChoice == 2) {       //Dumb AI
+
+                          }
 			}
 			else //User selects player vs player, which is 2 players
 			{

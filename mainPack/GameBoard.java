@@ -1,4 +1,4 @@
-package mainPack;     
+package mainPack;
 public interface GameBoard {
 		public void emptyGameBoard();
 		public int[][] getGameBoard();
@@ -8,5 +8,4 @@ public interface GameBoard {
 		public boolean checkValid(int columnNumber);
 		public int getValue(int row, int column);
 		public int getLowestGridValue(int columnNumber);
-		public void displayBoard();
 }

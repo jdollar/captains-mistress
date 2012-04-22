@@ -55,16 +55,7 @@ public class GameBoardImpl implements GameBoard{
 		
 		return 0;
 	}
-	
-	public void displayBoard(){
-		for(int x = 0; x < ROW; x++){
-			for(int y = 0; y < COL; y++){
-				System.out.print(gameBoard[x][y]);
-			}
-			System.out.print("\n");
-		}
-	}
-	
+
 	public void emptyGameBoard() {
 		//creates an empty game board and sends it back
 		for(int x = 0; x < ROW; x++){
