@@ -126,7 +126,13 @@ public class NTreeTestCase{
 		testBoard.columnNTokens(2, 1, 0);
 		testBoard.columnNTokens(3, 1, 1);
 		testTree.transversal(testTree.buildTree(testBoard,  -1, 0));
-		assertEquals("Result", 1, testTree.getColumnToMove());	
+		assertEquals("Result", 1, testTree.getColumnToMove());
+		//continually returns 2
+		testBoard.emptyGameBoard();
+		testBoard.columnNTokens(2, 1, 4);
+		testBoard.columnNTokens(3, 1, 5);
+		assertEquals("Result", 5, testTree.getColumnToMove());
+		
 	}
 
 	@Test

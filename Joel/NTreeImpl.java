@@ -7,11 +7,8 @@ public class NTreeImpl implements NTree{
 	private int alpha = -5;
 	private int beta = -6;
 	private int stepCount;
-	private int columnToMoveAlpha = -1;
-	private int columnToMoveBeta = 0;
-	private int playerTurnCount = 0;
+	private int columnToMove = 0;
 	private int depth = 0;
-	private int testDepth = 2147483647;
 	private StateCheckImpl tests;
 
 	public NTreeImpl(int step){
@@ -93,45 +90,53 @@ public class NTreeImpl implements NTree{
 	
 	public boolean transversal(NodeImpl currentNode){
 		boolean choice = false;
+		int columnToMoveAlpha = -1;
+		int columnToMoveBeta = -1;
+		int testDepthAlpha = 2147483647;
+		int testDepthBeta = 2147483647;
+		boolean testForBiggestValue = false;
 		for(int x = 0; x <= currentNode.numChildren(); x++){
-			System.out.println("Child: " + x);
+			/*System.out.println("Child: " + x);
 			System.out.println("State: " + currentNode.getState());
 			System.out.println("Player: " + currentNode.getPlayer());
 			System.out.println("Column: " + currentNode.getColumn());
-			System.out.println("Alpha: " + alpha);
+			System.out.println("Alpha: " + alpha);*/
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
-				if(transversal(currentNode.getChild(x)) && currentNode.getChild(x).getPlayer() == 1){
+				testForBiggestValue = transversal(currentNode.getChild(x));
+				if(testForBiggestValue && currentNode.getChild(x).getPlayer() == 1){
 					columnToMoveAlpha = currentNode.getChild(x).getColumn();
 				}
 			}
 			if((currentNode.getState() > alpha &&
-					currentNode.getPlayer() == 1) || (currentNode.getState() == alpha &&
-					currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepth)){
-				testDepth = currentNode.getDepth();
+					currentNode.getPlayer() == 2) || (currentNode.getState() == alpha &&
+					alpha <= 4 && currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepthAlpha)){
+				testDepthAlpha = currentNode.getDepth();
 				alpha = currentNode.getState();
 				columnToMoveAlpha = currentNode.getColumn();
 				choice = true;
 			}
-			/*if(currentNode.numChildren() > 0){
-				if(currentNode.getChild(x) != null){
-					if(currentNode.getChild(x).getPlayer() == 1){
-						if(currentNode.getChild(x).getState() > alpha){
-							alpha = currentNode.getChild(x).getState();
-							System.out.println("ALPHA");
-							columnToMove = x;
-						}
-					}
-					else if(currentNode.getChild(x).getPlayer() == 2){
-						if(currentNode.getChild(x).getState() > beta){
-							beta = currentNode.getChild(x).getState();
-							System.out.println("BETA");
-							columnToMove = x;
-						}
-					}
-				}*/
+			
+			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
+				if(testForBiggestValue && currentNode.getChild(x).getPlayer() == 2){
+					columnToMoveBeta = currentNode.getChild(x).getColumn();
+				}
+			}
+			if((currentNode.getState() > beta &&
+					currentNode.getPlayer() == 2) || (currentNode.getState() == beta &&
+					beta <= 4 && currentNode.getPlayer() == 2 && currentNode.getDepth() < testDepthBeta)){
+				testDepthBeta = currentNode.getDepth();
+				beta = currentNode.getState();
+				columnToMoveBeta = currentNode.getColumn();
+				choice = true;
+			}
 		}
 
-
+		if (beta >= 3){
+			columnToMove = columnToMoveBeta;
+		}
+		else{
+			columnToMove = columnToMoveAlpha;
+		}
 
 		//			player = currentNode.getPlayer();
 		//
@@ -164,6 +169,6 @@ public class NTreeImpl implements NTree{
 	}
 
 	public int getColumnToMove(){
-		return this.columnToMoveAlpha;
+		return this.columnToMove;
 	}
 }
