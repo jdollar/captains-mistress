@@ -19,12 +19,13 @@ public class  GameEngineImpl implements GameEngine{
 		GameBoardImpl gameBoard = new GameBoardImpl();
 		SmartAIImpl smart = new SmartAIImpl();
 		DumbAI dumb = new DumbAI();
+		
+                numberPlayers = numPlayers.DrawMenu();
+		aiChoice = numPlayers.AIChoice();
 
   		while (loopcondition){
-			numberPlayers = numPlayers.DrawMenu();
-			aiChoice = numPlayers.AIChoice();
 
-			if (aiChoice == 0) //User selects computer vs computer, which is 2 AI's
+			if (numberPlayers == 0) //User selects computer vs computer, which is 2 AI's
 			{
                           if (aiChoice == 1) {             //Smart AI
 							  playerOne = smart.Astar();
@@ -35,7 +36,7 @@ public class  GameEngineImpl implements GameEngine{
 							  playerTwo = dumb.ColumnFill();
                           }
 			}
-			else if (aiChoice == 1) //User selects player vs computer, which is 1 AI and 1 user player
+			else if (numberPlayers == 1) //User selects player vs computer, which is 1 AI and 1 user player
 			{
                           if (aiChoice == 1) {            //Smart AI
 							  playerOne = smart.Astar();
@@ -46,7 +47,7 @@ public class  GameEngineImpl implements GameEngine{
 							  playerTwo = ; // user player
                           }
 			}
-			else //User selects player vs player, which is 2 user players
+			else if (numberPlayers == 2)//User selects player vs player, which is 2 user players
 			{
 				playerOne = ; // user player
 				playerTwo = ; // user player
