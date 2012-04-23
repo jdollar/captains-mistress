@@ -15,13 +15,14 @@ public class  GameEngineImpl implements GameEngine{
 		int aiChoice = 0;
 
   		StateCheckImpl loopChecks = new StateCheckImpl();     // Calls all the information needed for running the game
-		DisplayImpl numPlayers = new DisplayImpl();
+		DisplayImpl display = new DisplayImpl();
 		GameBoardImpl gameBoard = new GameBoardImpl();
 		SmartAIImpl smart = new SmartAIImpl();
 		DumbAI dumb = new DumbAI();
+		UserInput player = new UserInput();
 		
-                numberPlayers = numPlayers.DrawMenu();
-		aiChoice = numPlayers.AIChoice();
+                numberPlayers = display.DrawMenu();
+		aiChoice = display.AIChoice(); 
 
   		while (loopcondition){
 
