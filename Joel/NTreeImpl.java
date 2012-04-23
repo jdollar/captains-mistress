@@ -8,6 +8,8 @@ public class NTreeImpl implements NTree{
 	private int beta = -6;
 	private int stepCount;
 	private int columnToMove = 0;
+	private int columnToMoveAlpha = -1;
+	private int columnToMoveBeta = -1;
 	private int depth = 0;
 	private StateCheckImpl tests;
 
@@ -90,8 +92,6 @@ public class NTreeImpl implements NTree{
 	
 	public boolean transversal(NodeImpl currentNode){
 		boolean choice = false;
-		int columnToMoveAlpha = -1;
-		int columnToMoveBeta = -1;
 		int testDepthAlpha = 2147483647;
 		int testDepthBeta = 2147483647;
 		boolean testForBiggestValue = false;
@@ -108,7 +108,7 @@ public class NTreeImpl implements NTree{
 				}
 			}
 			if((currentNode.getState() > alpha &&
-					currentNode.getPlayer() == 2) || (currentNode.getState() == alpha &&
+					currentNode.getPlayer() == 1) || (currentNode.getState() == alpha &&
 					alpha <= 4 && currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepthAlpha)){
 				testDepthAlpha = currentNode.getDepth();
 				alpha = currentNode.getState();
@@ -131,7 +131,7 @@ public class NTreeImpl implements NTree{
 			}
 		}
 
-		if (beta >= 3){
+		if (beta >= 3 && alpha < 4){
 			columnToMove = columnToMoveBeta;
 		}
 		else{
