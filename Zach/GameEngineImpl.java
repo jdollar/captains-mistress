@@ -2,10 +2,14 @@ package Zach;
 
 import mainPack.*;
 import James.*;
+import Joel.*;
+import Josh.*;
+import Mohammed.*;
 
 public class  GameEngineImpl implements GameEngine{
 	int playerToken;
 	public void GameLoop(){
+
 		boolean loopcondition = true;
 		int numberPlayers = 0;
 		int aiChoice = 0;
@@ -15,6 +19,7 @@ public class  GameEngineImpl implements GameEngine{
 		GameBoardImpl gameBoard = new GameBoardImpl();
 		SmartAIImpl smart = new SmartAIImpl();
 		DumbAI dumb = new DumbAI();
+
   		while (loopcondition){
 			numberPlayers = numPlayers.DrawMenu();
 			aiChoice = numPlayers.AIChoice();
