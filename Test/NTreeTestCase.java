@@ -55,14 +55,14 @@ public class NTreeTestCase{
 		testNode.setChildAt(1, new NodeImpl(4, 0, 1, 1, 1));
 		testTree.transversal(testNode);
 		assertEquals("Result", 4, testTree.getAlpha());
-		assertEquals("Result", 1, testTree.getColumnToMove());
+		assertEquals("Result", 2, testTree.getColumnToMove());
 		//write some more tests to get the problem determined
 	}
 	
 	@Test
 	public void testEmptyGameBoardMove() {
 		testBoard.emptyGameBoard();
-		testTree = new NTreeImpl(2);
+		testTree = new NTreeImpl(1);
 		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, 0)));

@@ -7,6 +7,8 @@ public class NTreeImpl implements NTree{
 	private int alpha = -5;
 	private int beta = -6;
 	private int stepCount;
+	private boolean alphaTrue = false;
+	private boolean betaTrue = false;
 	private int columnToMove = 0;
 	private int columnToMoveAlpha = -1;
 	private int columnToMoveBeta = -1;
@@ -21,13 +23,13 @@ public class NTreeImpl implements NTree{
 		//variable declaration
 		int validMoves = 0;
 		int[] validMoveArray = new int[7]; 
-		
+
 		/*creates a new instance of the board class to hold this node as a 
 		 *parent gameBoard reference for the children so they should
 		 *restart their states with the parent gameBoard then explore
 		 *all possible choices*/
 		//DummyGameBoardImpl tempBoard = new DummyGameBoardImpl(board.getGameBoard());
-		
+
 		//checks if move possible on column and if not root node
 		if(board.checkValid(column)){
 			if(player != -1){
@@ -78,7 +80,7 @@ public class NTreeImpl implements NTree{
 				 *layers*/
 				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board.getGameBoard()), changePlayer(player), validMoveArray[i]));
 				board.setValue(board.getLowestGridValue(validMoveArray[i]) + 1, validMoveArray[i], 0);
-				
+
 			}
 		}
 		//board.setValue(board.getLowestGridValue(column) + 1, column, 0);
@@ -89,69 +91,74 @@ public class NTreeImpl implements NTree{
 	public int getAlpha(){
 		return alpha;
 	}
-	
+
 	public boolean transversal(NodeImpl currentNode){
 		boolean choice = false;
 		int testDepthAlpha = 2147483647;
 		int testDepthBeta = 2147483647;
+		boolean betaChange = false;
+		boolean alphaChange = false;
 		boolean testForBiggestValue = false;
+		System.out.println("--------------");
+		System.out.println(currentNode.getDepth());
+		System.out.println("-------------");
 		for(int x = 0; x <= currentNode.numChildren(); x++){
-			/*System.out.println("Child: " + x);
+			System.out.println("Child: " + x);
+			System.out.println("ChildrenLength: " + currentNode.numChildren());
 			System.out.println("State: " + currentNode.getState());
 			System.out.println("Player: " + currentNode.getPlayer());
 			System.out.println("Column: " + currentNode.getColumn());
-			System.out.println("Alpha: " + alpha);*/
+			System.out.println("Alpha: " + alpha);
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
-				testForBiggestValue = transversal(currentNode.getChild(x));
-				if(testForBiggestValue && currentNode.getChild(x).getPlayer() == 1){
-					columnToMoveAlpha = currentNode.getChild(x).getColumn();
+				transversal(currentNode.getChild(x));
+				System.out.println(currentNode.getColumn());
+				if(currentNode.getPlayer() == 1 && alphaTrue ){
+					columnToMoveAlpha = currentNode.getColumn();
+				}
+				else if(currentNode.getPlayer() == 2 && betaTrue){
+					columnToMoveBeta = currentNode.getColumn();
 				}
 			}
+
+			/*if(currentNode.numChildren() > 0 && x < currentNode.numChildren()
+					&& currentNode.getDepth() > 0){
+				testForBiggestValue = transversal(currentNode.getChild(x));
+				if(testForBiggestValue && currentNode.getPlayer() == 1){
+					columnToMoveAlpha = currentNode.getColumn();
+				}
+				else if (testForBiggestValue && currentNode.getPlayer() == 2){
+					columnToMoveBeta = currentNode.getColumn();
+				}
+			}*/
 			if((currentNode.getState() > alpha &&
 					currentNode.getPlayer() == 1) || (currentNode.getState() == alpha &&
 					alpha <= 4 && currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepthAlpha)){
 				testDepthAlpha = currentNode.getDepth();
 				alpha = currentNode.getState();
 				columnToMoveAlpha = currentNode.getColumn();
-				choice = true;
+				alphaChange = true;
 			}
-			
-			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
-				if(testForBiggestValue && currentNode.getChild(x).getPlayer() == 2){
-					columnToMoveBeta = currentNode.getChild(x).getColumn();
-				}
-			}
-			if((currentNode.getState() > beta &&
+			else if((currentNode.getState() > beta &&
 					currentNode.getPlayer() == 2) || (currentNode.getState() == beta &&
 					beta <= 4 && currentNode.getPlayer() == 2 && currentNode.getDepth() < testDepthBeta)){
 				testDepthBeta = currentNode.getDepth();
 				beta = currentNode.getState();
 				columnToMoveBeta = currentNode.getColumn();
-				choice = true;
+				betaChange = false;
 			}
 		}
-
-		if (beta >= 3 && alpha < 4){
+		
+		if ((beta > alpha && beta >= 3) && betaChange){
 			columnToMove = columnToMoveBeta;
+			betaTrue = true;
+			alphaTrue = false;
 		}
-		else{
+		else if (((beta < alpha || alpha == beta) && beta < 3) && alphaChange){
 			columnToMove = columnToMoveAlpha;
+			alphaTrue = true;
+			betaTrue = false;
 		}
 
-		//			player = currentNode.getPlayer();
-		//
-		//			if(player == 1){
-		//				if(checkValue > alpha){
-		//					alpha = checkValue;
-		//					columnToMove = x;
-		//				}
-		//			}
-		//			else if(player == 2){
-		//				if(checkValue > beta){
-		//					beta = checkValue;
-		//					columnToMove = x;
-		//				}
-		//			}		
 		return choice;
 	}
 
