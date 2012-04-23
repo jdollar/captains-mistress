@@ -93,21 +93,21 @@ public class NTreeImpl implements NTree{
 	
 	public boolean transversal(NodeImpl currentNode){
 		boolean choice = false;
-		boolean send = false;
 		for(int x = 0; x <= currentNode.numChildren(); x++){
 			System.out.println(x);
 			System.out.println(currentNode.getState());
 			System.out.println("Alpha: " + alpha);
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
-				if(transversal(currentNode.getChild(x))){
+				if(transversal(currentNode.getChild(x)) && currentNode.getChild(x).getPlayer() == 1){
 					columnToMoveAlpha = x;
 				}
 			}
-			if(currentNode.getState() >= alpha &&
-					currentNode.getPlayer() == 1 /*&& currentNode.getDepth() < testDepth*/){
+			if(currentNode.getState() > alpha &&
+					currentNode.getPlayer() == 1 && currentNode.getState() < 7 /*&& currentNode.getDepth() < testDepth*/){
 				testDepth = currentNode.getDepth();
 				alpha = currentNode.getState();
 				columnToMoveAlpha = x;
+				choice = true;
 			}
 			/*if(currentNode.numChildren() > 0){
 				if(currentNode.getChild(x) != null){
