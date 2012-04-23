@@ -37,12 +37,14 @@ public class  GameEngineImpl implements GameEngine{
 							  playerTwo = ; // user player?
                           }
                           else if (aiChoice == 2) {       //Dumb AI
-							  playerOne = ; // user player
+							  playerOne = dumb.ColumnFill(); // user player
 							  playerTwo = ; // user player
                           }
 			}
 			else //User selects player vs player, which is 2 user players
 			{
+				playerOne = ; // user player
+				playerTwo = ; // user player
 			}
 
 	/*	while(!loopChecks.CheckVictory(gameBoard)){
