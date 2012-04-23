@@ -4,9 +4,6 @@ import mainPack.*;
 
 public class SmartAIImpl extends AI implements SmartAI{
 	private final int STEPS = 4;
-	enum Direction {
-		UP, DOWN, LEFT, RIGHT, RIGHTUP, RIGHTDOWN, LEFTUP, LEFTDOWN, NONE
-	}
 	
 	public SmartAIImpl(DummyGameBoardImpl GameBoardPass){
 		super(GameBoardPass);

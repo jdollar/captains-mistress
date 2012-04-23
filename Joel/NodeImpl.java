@@ -6,17 +6,23 @@ public class NodeImpl implements Node{
 	private int state;
 	private int player;
 	private int depth;
+	private int column;
 	private NodeImpl[] child;
 	
-	public NodeImpl(int alphaBetaValue, int validMoves, int playerNumber, int depth){
+	public NodeImpl(int alphaBetaValue, int validMoves, int playerNumber, int depth, int columnNumber){
 		this.state = alphaBetaValue;
 		this.child = new NodeImpl[validMoves];
 		this.player = playerNumber;
 		this.depth = depth;
+		this.column = columnNumber;
 	}
 	
 	public int numChildren(){
 		return this.child.length;
+	}
+	
+	public int getColumn(){
+		return this.column;
 	}
 	
 	public int getDepth(){

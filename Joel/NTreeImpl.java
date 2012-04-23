@@ -7,7 +7,7 @@ public class NTreeImpl implements NTree{
 	private int alpha = -5;
 	private int beta = -6;
 	private int stepCount;
-	private int columnToMoveAlpha = 0;
+	private int columnToMoveAlpha = -1;
 	private int columnToMoveBeta = 0;
 	private int playerTurnCount = 0;
 	private int depth = 0;
@@ -53,7 +53,7 @@ public class NTreeImpl implements NTree{
 		}
 		/*creates a node for the tree based on score of current position and how many different children
 		 *it can make. Also stores the current player and depth of the node in the tree*/
-		NodeImpl n = new NodeImpl(tests.scoreDetermine(player), validMoves, player, depth);
+		NodeImpl n = new NodeImpl(tests.scoreDetermine(player), validMoves, player, depth, column);
 
 		if(depth <= stepCount){	
 
@@ -94,19 +94,22 @@ public class NTreeImpl implements NTree{
 	public boolean transversal(NodeImpl currentNode){
 		boolean choice = false;
 		for(int x = 0; x <= currentNode.numChildren(); x++){
-			System.out.println(x);
-			System.out.println(currentNode.getState());
+			System.out.println("Child: " + x);
+			System.out.println("State: " + currentNode.getState());
+			System.out.println("Player: " + currentNode.getPlayer());
+			System.out.println("Column: " + currentNode.getColumn());
 			System.out.println("Alpha: " + alpha);
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
 				if(transversal(currentNode.getChild(x)) && currentNode.getChild(x).getPlayer() == 1){
-					columnToMoveAlpha = x;
+					columnToMoveAlpha = currentNode.getChild(x).getColumn();
 				}
 			}
-			if(currentNode.getState() > alpha &&
-					currentNode.getPlayer() == 1 && currentNode.getState() < 7 /*&& currentNode.getDepth() < testDepth*/){
+			if((currentNode.getState() > alpha &&
+					currentNode.getPlayer() == 1) || (currentNode.getState() == alpha &&
+					currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepth)){
 				testDepth = currentNode.getDepth();
 				alpha = currentNode.getState();
-				columnToMoveAlpha = x;
+				columnToMoveAlpha = currentNode.getColumn();
 				choice = true;
 			}
 			/*if(currentNode.numChildren() > 0){
