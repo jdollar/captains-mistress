@@ -9,7 +9,7 @@ public class UserInput extends AbstractGeneralControls{
 	private int playerMove;
 	private int moveCheck = 0;
 
-	public UserInput(DummyGameBoardImpl GameBoardPass){
+	public UserInput(GameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	

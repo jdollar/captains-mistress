@@ -5,7 +5,7 @@ import mainPack.*;
 public class SmartAIImpl extends AI implements SmartAI{
 	private final int STEPS = 4;
 
-	public SmartAIImpl(DummyGameBoardImpl GameBoardPass){
+	public SmartAIImpl(GameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 

@@ -1,0 +1,17 @@
+JFLAGS = -g
+JCC = javac
+SOURCE_PATH= ./James ./Joel ./Zach ./Mohammed ./Josh ./mainPack ./Test
+.SUFFIXES: .java .class
+.java.class:
+        $(JC) $(JFLAGS) $*.java
+
+CLASSES = \
+       ClassNamesHere.java\
+	morestuff
+
+default: classes
+
+classes: $(CLASSES:.java=.class)
+
+clean:
+        $(RM) *.class

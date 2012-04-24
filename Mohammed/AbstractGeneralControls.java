@@ -9,6 +9,7 @@ package Mohammed;
 import mainPack.*;
 import java.util.ArrayList;
 import java.util.List;
+import mainPack.GameBoardImpl;
 
 public abstract class AbstractGeneralControls implements GeneralControls {
 
@@ -20,7 +21,7 @@ public abstract class AbstractGeneralControls implements GeneralControls {
     /**
      * Game board object.
      */
-    protected DummyGameBoardImpl gameBoard;
+    protected GameBoardImpl gameBoard;
 
     /**
      * Constructor.
@@ -28,15 +29,15 @@ public abstract class AbstractGeneralControls implements GeneralControls {
      * Please note that we do not have parameterless constructor with a purpose.
      * @param dummyGameBoardImpl
      */
-    protected AbstractGeneralControls(DummyGameBoardImpl dummyGameBoardImpl) {
-        gameBoard = dummyGameBoardImpl;
+    protected AbstractGeneralControls(GameBoardImpl gameBoardImpl) {
+        gameBoard = gameBoardImpl;
     }
 
     /**
      * Returns instance of DummyGameBoardImpl field.
      * @return DummyGameBoardImpl
      */
-    public DummyGameBoardImpl getGameBoard() {
+    public GameBoardImpl getGameBoard() {
         return gameBoard;
     }
 

@@ -1,6 +1,6 @@
 package Joel;
 
-import mainPack.DummyGameBoardImpl;
+import mainPack.GameBoardImpl;
 import mainPack.StateCheckImpl;
 
 public class NTreeImpl implements NTree{
@@ -12,6 +12,8 @@ public class NTreeImpl implements NTree{
 	private int columnToMove = 0;
 	private int columnToMoveAlpha = -1;
 	private int columnToMoveBeta = -1;
+	private int testDepthAlpha = 2147483647;
+	private int testDepthBeta = 2147483647;
 	private int depth = 0;
 	private StateCheckImpl tests;
 
@@ -19,7 +21,7 @@ public class NTreeImpl implements NTree{
 		stepCount = step;
 	}
 
-	public NodeImpl buildTree(DummyGameBoardImpl board, int player, int column){
+	public NodeImpl buildTree(GameBoardImpl board, int player, int column){
 		//variable declaration
 		int validMoves = 0;
 		int[] validMoveArray = new int[7]; 
@@ -66,11 +68,6 @@ public class NTreeImpl implements NTree{
 				 *Placed board set value inside this loop so that board is explicitly
 				 *(via assignment statement below) getting reinitialized as original
 				 *board value then assigned one by one.*/
-				if(stepCount == 1){
-					board.displayBoard();
-					System.out.println();
-				}
-
 				//board =  new DummyGameBoardImpl(tempBoard.getGameBoard());
 
 
@@ -78,7 +75,7 @@ public class NTreeImpl implements NTree{
 				 *again until depth has been reached then go out one layer and do the next child
 				 *of that node until we get all children of root's first 7 children for stepCount
 				 *layers*/
-				n.setChildAt(i, buildTree(new DummyGameBoardImpl(board.getGameBoard()), changePlayer(player), validMoveArray[i]));
+				n.setChildAt(i, buildTree(new GameBoardImpl(board), changePlayer(player), validMoveArray[i]));
 				board.setValue(board.getLowestGridValue(validMoveArray[i]) + 1, validMoveArray[i], 0);
 
 			}
@@ -94,8 +91,6 @@ public class NTreeImpl implements NTree{
 
 	public boolean transversal(NodeImpl currentNode){
 		boolean choice = false;
-		int testDepthAlpha = 2147483647;
-		int testDepthBeta = 2147483647;
 		boolean betaChange = false;
 		boolean alphaChange = false;
 		boolean testForBiggestValue = false;
@@ -103,15 +98,8 @@ public class NTreeImpl implements NTree{
 		System.out.println(currentNode.getDepth());
 		System.out.println("-------------");
 		for(int x = 0; x <= currentNode.numChildren(); x++){
-			System.out.println("Child: " + x);
-			System.out.println("ChildrenLength: " + currentNode.numChildren());
-			System.out.println("State: " + currentNode.getState());
-			System.out.println("Player: " + currentNode.getPlayer());
-			System.out.println("Column: " + currentNode.getColumn());
-			System.out.println("Alpha: " + alpha);
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
 				transversal(currentNode.getChild(x));
-				System.out.println(currentNode.getColumn());
 				if(currentNode.getPlayer() == 1 && alphaTrue ){
 					columnToMoveAlpha = currentNode.getColumn();
 				}
@@ -120,16 +108,6 @@ public class NTreeImpl implements NTree{
 				}
 			}
 
-			/*if(currentNode.numChildren() > 0 && x < currentNode.numChildren()
-					&& currentNode.getDepth() > 0){
-				testForBiggestValue = transversal(currentNode.getChild(x));
-				if(testForBiggestValue && currentNode.getPlayer() == 1){
-					columnToMoveAlpha = currentNode.getColumn();
-				}
-				else if (testForBiggestValue && currentNode.getPlayer() == 2){
-					columnToMoveBeta = currentNode.getColumn();
-				}
-			}*/
 			if((currentNode.getState() > alpha &&
 					currentNode.getPlayer() == 1) || (currentNode.getState() == alpha &&
 					alpha <= 4 && currentNode.getPlayer() == 1 && currentNode.getDepth() < testDepthAlpha)){
@@ -144,7 +122,7 @@ public class NTreeImpl implements NTree{
 				testDepthBeta = currentNode.getDepth();
 				beta = currentNode.getState();
 				columnToMoveBeta = currentNode.getColumn();
-				betaChange = false;
+				betaChange = true;
 			}
 		}
 		

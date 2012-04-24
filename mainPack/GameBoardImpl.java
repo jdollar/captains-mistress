@@ -32,7 +32,7 @@ public class GameBoardImpl implements GameBoard{
 	}
 	
 	public boolean checkValid(int columnNumber){
-		if(getLowestGridValue(columnNumber) == -1){
+		if(columnNumber >= 7 || columnNumber < 0 || getLowestGridValue(columnNumber) == -1){
 			return false;
 		}
 		else

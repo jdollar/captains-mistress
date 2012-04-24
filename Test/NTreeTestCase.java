@@ -62,7 +62,7 @@ public class NTreeTestCase{
 	@Test
 	public void testEmptyGameBoardMove() {
 		testBoard.emptyGameBoard();
-		testTree = new NTreeImpl(1);
+		testTree = new NTreeImpl(2);
 		testTree.transversal(testTree.buildTree(testBoard, -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
 		//assertEquals("Result", 0, testTree.transversal(testTree.buildTree(testBoard, -1, 0)));
@@ -92,6 +92,12 @@ public class NTreeTestCase{
 		testBoard.columnNTokens(3, 2, 1);
 		testTree.transversal(testTree.buildTree(testBoard,  -1, 0));
 		assertEquals("Result", 0, testTree.getColumnToMove());
+		
+		testBoard.emptyGameBoard();
+		testBoard.columnNTokens(3, 1, 1);
+		testBoard.columnNTokens(3, 2, 2);
+		testTree.transversal(testTree.buildTree(testBoard,  -1, 0));
+		assertEquals("Result", 1, testTree.getColumnToMove());
 	}
 
 	@Test
