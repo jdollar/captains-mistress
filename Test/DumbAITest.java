@@ -41,6 +41,6 @@ public class DumbAITest {
 		testBoardCase.emptyGameBoard();
 		testBoardCase.fullGameBoardAlternating();
 
-		assertEquals("Result", -1, testAI.ColumnFill(testBoardCase));
+		assertEquals("Result", -1, testAI.ColumnFill());
 	}
 }

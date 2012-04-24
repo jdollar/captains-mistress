@@ -76,7 +76,7 @@ public class NTreeImpl implements NTree{
 				 *of that node until we get all children of root's first 7 children for stepCount
 				 *layers*/
 				n.setChildAt(i, buildTree(new GameBoardImpl(board), changePlayer(player), validMoveArray[i]));
-				board.setValue(board.getLowestGridValue(validMoveArray[i]) + 1, validMoveArray[i], 0);
+				board.setValue(board.getLowestGridValue(validMoveArray[i]), validMoveArray[i], 0);
 
 			}
 		}
@@ -94,9 +94,6 @@ public class NTreeImpl implements NTree{
 		boolean betaChange = false;
 		boolean alphaChange = false;
 		boolean testForBiggestValue = false;
-		System.out.println("--------------");
-		System.out.println(currentNode.getDepth());
-		System.out.println("-------------");
 		for(int x = 0; x <= currentNode.numChildren(); x++){
 			if(currentNode.numChildren() > 0 && x < currentNode.numChildren()){
 				transversal(currentNode.getChild(x));
