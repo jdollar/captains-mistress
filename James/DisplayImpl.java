@@ -14,14 +14,14 @@ public class DisplayImpl implements Display{
     column = gameBoard[0].length;
 
     System.out.println("");
+    System.out.println("");
+    System.out.println("");
+    System.out.println("");
 
     for (int y = 0; y < column; y++){
       System.out.print(" ");
       System.out.print(y+1);
     }
-    System.out.println("");
-    System.out.println("");
-    System.out.println("");
     System.out.println("");
 
     /**The only accepted values from the gameboard are 0, 1, or 2.*/
@@ -45,6 +45,9 @@ public class DisplayImpl implements Display{
       }
       System.out.println("");
     }
+    System.out.println("");
+    System.out.println("");
+    System.out.println("");
   }
   public int DrawMenu(){
     menuInput = 0;
