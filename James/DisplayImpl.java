@@ -9,6 +9,7 @@ public class DisplayImpl implements Display{
   private int aiChoice;
 
   public void ReDrawGameBoard(int[][] gameBoard){
+    /**This code is designed to be generic enough for multiple board sizes.*/
     row = gameBoard.length;
     column = gameBoard[0].length;
 
@@ -22,6 +23,8 @@ public class DisplayImpl implements Display{
     System.out.println("");
     System.out.println("");
     System.out.println("");
+
+    /**The only accepted values from the gameboard are 0, 1, or 2.*/
 
     for (int x = 0; x < row; x++) {
       System.out.print("|");
@@ -48,6 +51,8 @@ public class DisplayImpl implements Display{
     menuPlayer = 4;
     Scanner input = new Scanner (System.in);
 
+    /**The spacing is to keep everything from running together on the screen.
+     *Only Play or Quit will break this loop.*/
     while (menuInput != 1 && menuInput != 3){
       System.out.println("");
       System.out.println("");
@@ -128,6 +133,7 @@ public class DisplayImpl implements Display{
   public int AIChoice(){
     Scanner input = new Scanner (System.in);
 
+    /**If needed, this method can be run twice for two AI players.*/
     while (aiChoice != 1 && aiChoice != 2){
       System.out.println("");
       System.out.println("");
