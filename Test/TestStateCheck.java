@@ -93,7 +93,6 @@ public class TestStateCheck{
 		testBoard.columnNTokens(4, 1, 1);
 		testBoard.displayBoard();
 		assertEquals("Result", 4, tester.downCheck(1, 2, 1));
-		assertEquals("Result", 2, tester.leftDownCheck(1, 2, 1));
 		
 		testBoard.emptyGameBoard();
 		testBoard.columnNTokens(1, 1, 0);

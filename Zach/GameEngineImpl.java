@@ -35,7 +35,7 @@ public class  GameEngineImpl implements GameEngine{
 
 		while(!draw && !victory){
 			display.ReDrawGameBoard(gameBoardObject.getGameBoard()); //Redraws game board
-			input = inputObject.getInput();           //Gets user input
+			input = inputObject.getInput(gameBoardObject);           //Gets user input
 			gameBoardObject.setValue(gameBoardObject.getLowestGridValue(input), input, playerToken);
 			if (loopChecks.checkVictory(gameBoardObject, playerToken))
 			{

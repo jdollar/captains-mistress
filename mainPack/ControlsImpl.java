@@ -20,7 +20,7 @@ public class ControlsImpl implements Controls{
 		player = new UserInput(gameBoard);
 	}
 	
-	public int getInput(){
+	public int getInput(GameBoardImpl gameBoard){
 		int columnToMove = 0;
 		if (numberPlayersChoice == 0){ //User selects computer vs computer, which is 2 AI's
 			if (playerTypes == 1) {             //Smart AI

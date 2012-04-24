@@ -53,7 +53,7 @@ public class GameBoardImpl implements GameBoard{
 				}
 			}
 		
-		return 0;
+		return -1;
 	}
 
 	public void emptyGameBoard() {
