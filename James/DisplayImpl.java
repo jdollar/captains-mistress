@@ -92,7 +92,7 @@ public class DisplayImpl implements Display{
                  System.out.println("");
                  System.out.println("The game is played with two players." +
                    " Each turn, a player selects the column they wish to place their token in."  +
-                   "Play continues until there is either a win, lose, or tie.");
+                   " Play continues until there is either a win, lose, or tie.");
                  break;
         case 3:  System.exit(0);
                  break;
