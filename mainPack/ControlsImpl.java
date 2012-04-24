@@ -34,7 +34,7 @@ public class ControlsImpl implements Controls{
 		else if (numberPlayersChoice == 1){ //User selects player vs computer, which is 1 AI and 1 user player
 			if (playerTypes == 1) {            //Smart AI
 				if(player1Turn){
-					columnToMove = player.GetInput();
+					columnToMove = player.GetInput(player1Turn);
 					player1Turn = false;
 				}
 				else{
@@ -44,7 +44,7 @@ public class ControlsImpl implements Controls{
 			}
 			else if (playerTypes == 2) {       //Dumb AI
 				if(player1Turn){
-					columnToMove = player.GetInput();
+					columnToMove = player.GetInput(player1Turn);
 					player1Turn = false;
 				}
 				else{
@@ -55,7 +55,8 @@ public class ControlsImpl implements Controls{
 			}
 		}
 		else if (numberPlayersChoice == 2){//User selects player vs player, which is 2 user players
-				columnToMove = player.GetInput();
+				columnToMove = player.GetInput(player1Turn);
+				player1Turn = !player1Turn;
 		}
 		return columnToMove;
 	}

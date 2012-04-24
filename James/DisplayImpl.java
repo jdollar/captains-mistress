@@ -119,6 +119,10 @@ public class DisplayImpl implements Display{
                  System.out.println("");
                  System.out.println("");
                  System.out.println("");
+                 System.out.println("Press Enter to continue...");
+                 Scanner in = new Scanner(System.in);
+                 in.useDelimiter("\n");
+                 in.nextLine();
                  break;
         case 3:  System.exit(0);
                  break;

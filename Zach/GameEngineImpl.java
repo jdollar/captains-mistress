@@ -26,7 +26,9 @@ public class  GameEngineImpl implements GameEngine{
 		GameBoardImpl gameBoardObject = new GameBoardImpl();
 
 		numberPlayers = display.DrawMenu();
-		aiChoice = display.AIChoice();
+		if(numberPlayers != 2){
+			aiChoice = display.AIChoice();
+		}
 
 
 		ControlsImpl inputObject = new ControlsImpl(numberPlayers, aiChoice, gameBoardObject); 
@@ -38,6 +40,8 @@ public class  GameEngineImpl implements GameEngine{
 			if (loopChecks.checkVictory(gameBoardObject, playerToken))
 			{
 				victory = true;
+				display.ReDrawGameBoard(gameBoardObject.getGameBoard());
+				System.out.println("WIN FOO");
 				// Calls displays output for victory
 				break;
 			}
@@ -51,15 +55,14 @@ public class  GameEngineImpl implements GameEngine{
 		}
 	}
 	
-	private int changePlayer(int currentToken){
+	private void changePlayer(int currentToken){
 		switch(currentToken){
 		case 1:
-			return 2;
+			playerToken = 2;
+			break;
 		case 2:
-			return 1;
+			playerToken = 1;
 		}
-		
-		return 0;
 	}
 }
 

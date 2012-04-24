@@ -7,19 +7,29 @@ import java.util.*;
 
 public class UserInput extends AbstractGeneralControls{
 	private int playerMove;
-	private int moveCheck = 0;
 
 	public UserInput(GameBoardImpl GameBoardPass){
 		super(GameBoardPass);
 	}
 	
-	public int GetInput(){
+	public int GetInput(boolean playerTurn){
+
+		int moveCheck = 0;
+		if(playerTurn){
+			System.out.print("Player 1: ");
+		}
+		else{
+			System.out.print("Player 2: ");
+		}
+		
 		System.out.println ("Please make a move");
+		playerMove = 0;
 		Scanner in = new Scanner(System.in);
 		playerMove = in.nextInt();
+		playerMove--;
 		if(gameBoard.checkValid(playerMove) == true)
 		{
-			if (playerMove >= 1 || playerMove <=  7)
+			if (playerMove >= 0 || playerMove < 7)
 			{
 				moveCheck = 1;
 			}
@@ -29,15 +39,16 @@ public class UserInput extends AbstractGeneralControls{
 		{
 			System.out.println ("Not a valid move, please select a new move");
 			playerMove = in.nextInt();
+			playerMove--;
 			if(gameBoard.checkValid(playerMove) == true)
 			{
-				if (playerMove >= 1 || playerMove <=  7)
+				if (playerMove >= 0 || playerMove <  7)
 				{
 					moveCheck = 1;
 				}
 			}
 		}
-		in.close();
+		//in.close();
 
 		return playerMove;
 	}

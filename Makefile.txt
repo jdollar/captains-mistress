@@ -6,8 +6,41 @@ SOURCE_PATH= ./James ./Joel ./Zach ./Mohammed ./Josh ./mainPack ./Test
         $(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-       ClassNamesHere.java\
-	morestuff
+	Display.java\
+	DisplayImpl.java\
+	AI.java\
+	DumbAI.java\
+	Node.java\
+	NodeImpl.java\
+	NTree.java\
+	NTreeImpl.java\
+	SmartAI.java\
+	SmartAIImpl.java\
+	UserInput.java\
+	Controls.java\
+	ControlsImpl.java\
+	DummyGameBoard.java\
+	DummyGameBoardImpl.java\
+	GameBoard.java\
+	GameBoardImpl.java\
+	main.java\
+	StateCheck.java\
+	StateCheckImpl.java\
+	AbstractGeneralControls.java\
+	GeneralControls.java\
+	GeneralControlsTester.java\
+	P.java\
+	PLAYER.java\
+	DumbAITest.java\
+	DummyGameBoardImplTest.java\
+	JUnitTestForGeneralControlsImpl.java\
+	NodeImplTest.java\
+	NTreeTestCase.java\
+	SmartAIImplTest.java\
+	TestStateCheck.java\
+	DummyControl.java\
+	GameEngine.java\
+	GameEngineImpl.java
 
 default: classes
 

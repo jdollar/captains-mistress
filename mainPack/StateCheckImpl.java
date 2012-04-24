@@ -63,10 +63,10 @@ public class StateCheckImpl implements StateCheck{
 				temp += rightUpCheck(x + 1, lowestGridValue - 1, token);
 			}
 			else if(x > 0 && lowestGridValue == 0){  //x larger than 0 and on bottom row
-				maxValue += leftDownCheck(x - 1, lowestGridValue + 1, token);
+				temp += leftDownCheck(x - 1, lowestGridValue + 1, token);
 			}
 			else if(x == 0 && lowestGridValue > 0){  //x is on left side and 0 or more row
-				maxValue += rightUpCheck(x + 1, lowestGridValue - 1, token);
+				temp += rightUpCheck(x + 1, lowestGridValue - 1, token);
 			}
 
 			maxValue = compare(maxValue, temp++);
@@ -74,14 +74,14 @@ public class StateCheckImpl implements StateCheck{
 
 			//right down left up diagonal
 			if(x > 0 && lowestGridValue > 0 && lowestGridValue < 5){ //both larger than 0
-				maxValue += leftUpCheck(x - 1, lowestGridValue - 1, token);
-				maxValue += rightDownCheck(x + 1, lowestGridValue + 1, token);
+				temp += leftUpCheck(x - 1, lowestGridValue - 1, token);
+				temp += rightDownCheck(x + 1, lowestGridValue + 1, token);
 			}
 			else if(x < gameBoard.getNumColumns() && lowestGridValue == 0){  //x larger than 0 and on bottom row
-				maxValue += rightUpCheck(x + 1, lowestGridValue + 1, token);
+				temp += rightUpCheck(x + 1, lowestGridValue + 1, token);
 			}
 			else if(x == 0 && lowestGridValue >= 0){  //x is on left side and 0 or more row
-				maxValue += rightDownCheck(x + 1, lowestGridValue + 1, token);
+				temp += rightDownCheck(x + 1, lowestGridValue + 1, token);
 			}	
 
 			maxValue = compare(maxValue, temp++);

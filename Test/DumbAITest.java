@@ -12,7 +12,7 @@ public class DumbAITest {
 	@Test
 	public void FirstMoveTest() {
 		testBoardCase.emptyGameBoard();
-		int testNumber = testAI.ColumnFill(testBoardCase);
+		int testNumber = testAI.ColumnFill();
 		assertTrue(testNumber >= 0 || testNumber <= 7);
 	}
 
