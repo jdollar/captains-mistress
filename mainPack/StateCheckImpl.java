@@ -22,11 +22,18 @@ public class StateCheckImpl implements StateCheck{
 
 	public boolean checkDraw(GameBoardImpl gameState){
 		gameBoard = gameState;
-		boolean drawValue = true;
+		int numOfInvalidMoves = 0;
 		for(int x = 0; x < gameBoard.getNumColumns(); x++){
-			drawValue = !(gameBoard.checkValid(x));
+			if(!gameBoard.checkValid(x)){
+				numOfInvalidMoves += 1;
+			}
 		}
-		return drawValue;
+		
+		if(numOfInvalidMoves == gameBoard.getNumColumns()){
+			return true;
+		}
+		
+		return false;
 	}
 
 	public int scoreDetermine(int token){

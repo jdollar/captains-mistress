@@ -41,13 +41,17 @@ public class  GameEngineImpl implements GameEngine{
 			{
 				victory = true;
 				display.ReDrawGameBoard(gameBoardObject.getGameBoard());
-				System.out.println("WIN FOO");
+				System.out.println("Game Over");
+				System.out.println("Player " + playerToken + " wins!");
 				// Calls displays output for victory
 				break;
 			}
 			else if (loopChecks.checkDraw(gameBoardObject))
 			{
 				draw = true;
+				display.ReDrawGameBoard(gameBoardObject.getGameBoard());
+				System.out.println("Game Over");
+				System.out.println("The game is a draw!");
 				// Calls displays output for draw
 				break;
 			}
