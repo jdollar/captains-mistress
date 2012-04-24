@@ -19,6 +19,9 @@ public class DisplayImpl implements Display{
       System.out.print(y+1);
     }
     System.out.println("");
+    System.out.println("");
+    System.out.println("");
+    System.out.println("");
 
     for (int x = 0; x < row; x++) {
       System.out.print("|");
@@ -47,11 +50,17 @@ public class DisplayImpl implements Display{
 
     while (menuInput != 1 && menuInput != 3){
       System.out.println("");
+      System.out.println("");
+      System.out.println("");
+      System.out.println("");
       System.out.println("Main Menu");
       System.out.println("");
       System.out.println("1) Play");
       System.out.println("2) Instructions");
       System.out.println("3) Quit Game");
+      System.out.println("");
+      System.out.println("");
+      System.out.println("");
       System.out.println("");
 
       try {
@@ -65,6 +74,9 @@ public class DisplayImpl implements Display{
       switch(menuInput){
         case 1:  while (menuPlayer != 0 && menuPlayer != 1 && menuPlayer != 2 && menuPlayer != 3){
                    System.out.println("");
+                   System.out.println("");
+                   System.out.println("");
+                   System.out.println("");
                    System.out.println("Number of Players");
                    System.out.println("");
                    System.out.println("0) Computer vs. Computer");
@@ -72,7 +84,9 @@ public class DisplayImpl implements Display{
                    System.out.println("2) Player vs. Player");
                    System.out.println("3) Back");
                    System.out.println("");
-  
+                   System.out.println("");
+                   System.out.println("");
+                   System.out.println("");
                    try {
                      menuPlayer = input.nextInt();
                    }
@@ -87,12 +101,19 @@ public class DisplayImpl implements Display{
                    }
                  break;
         case 2:  System.out.println("");
+                 System.out.println("");
+                 System.out.println("");
+                 System.out.println("");
                  System.out.println("The goal is to get four of your tokens in a row either " +
                    "horizontally, vertically, or diagonally.");
                  System.out.println("");
                  System.out.println("The game is played with two players." +
                    " Each turn, a player selects the column they wish to place their token in."  +
                    " Play continues until there is either a win, lose, or tie.");
+                 System.out.println("");
+                 System.out.println("");
+                 System.out.println("");
+                 System.out.println("");
                  break;
         case 3:  System.exit(0);
                  break;
@@ -109,10 +130,16 @@ public class DisplayImpl implements Display{
 
     while (aiChoice != 1 && aiChoice != 2){
       System.out.println("");
+      System.out.println("");
+      System.out.println("");
+      System.out.println("");
       System.out.println("Computer Difficulty");
       System.out.println("");
       System.out.println("1) Smart");
       System.out.println("2) Dumb");
+      System.out.println("");
+      System.out.println("");
+      System.out.println("");
       System.out.println("");
 
       try {
